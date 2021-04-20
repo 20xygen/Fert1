@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/numpad_container"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:scaleType="centerCrop"
+                android:src="@drawable/left_bracket" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/right_bracket" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/comma" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/power" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/one" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/two" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/three" />
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/divide" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/four" />
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/five" />
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/six" />
+
+            <ImageButton
+                android:id="@+id/imageButton12"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/multiply" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton13"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/seven" />
+
+            <ImageButton
+                android:id="@+id/imageButton14"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/eight" />
+
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/nine" />
+
+            <ImageButton
+                android:id="@+id/imageButton16"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/minus" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton17"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/delete" />
+
+            <ImageButton
+                android:id="@+id/imageButton18"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/zero" />
+
+            <ImageButton
+                android:id="@+id/imageButton19"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/equally" />
+
+            <ImageButton
+                android:id="@+id/imageButton20"
+                android:background="#000000"
+                style="@android:style/Widget.ImageButton"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/button_size_w"
+                android:layout_height="@dimen/button_size_h"
+                android:src="@drawable/plus" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+</TableLayout>

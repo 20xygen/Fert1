@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NumpadActivity">
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="223dp"
+        tools:layout_editor_absoluteY="379dp">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:shadowColor="@color/text_yellow"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="10"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Процент ошибки: 1%" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:shadowColor="@color/text_blue"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="10"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Вычисления" />
+
+        <com.example.fert1.NumpadMain
+            android:id="@+id/my_numpad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/black"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/menu_bottom_navigation" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

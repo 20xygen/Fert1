@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="84dp">
+
+        <TextView
+            android:textColor="#ffffff"
+            android:shadowColor="@color/text_blue"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="Приветствую тебя, мой новый друг. Меня зовут Ферт. Я - калькулятор с характером, также как обычные люди, я могу делать ошибки, и их количество напрямую зависит от уровня наших взаимоотношений. Теперь, поведуй и ты мне своё имя: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:textColor="#ffffff"
+            android:shadowColor="@color/text_yellow"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:textSize="30dp"
+            android:shadowRadius="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="3"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Введите ваше имя: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/switchToCalcButton"
+            android:textColor="#ffffff"
+            android:shadowColor="@color/text_yellow"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:textSize="30dp"
+            android:shadowRadius="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="50dp"
+            android:layout_weight="3"
+            android:text="Далее"
+            android:background="@color/black"
+            android:onClick="switchToCalc"
+             />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
