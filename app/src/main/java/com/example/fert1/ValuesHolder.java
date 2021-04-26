@@ -69,7 +69,7 @@ public class ValuesHolder {
         ValuesHolder.name = name;
     }
 
-    public static void saveAll(){
+    public void saveAll(){
         valuesSaver.save("Name", name);
         valuesSaver.save("ImageX", imageX);
         valuesSaver.save("ImageY", imageY);
@@ -78,12 +78,20 @@ public class ValuesHolder {
         valuesSaver.save("IsCreated", isCreated);
     }
 
-    public static void loadAll(){
+    public void loadAll(){
+        System.out.println("Name " + valuesSaver.loadString("Name"));
         name = valuesSaver.loadString("Name");
+        System.out.println("ImageX " + valuesSaver.loadInteger("ImageX"));
         imageX = valuesSaver.loadInteger("ImageX");
+        System.out.println("ImageY " + valuesSaver.loadInteger("ImageY"));
         imageY = valuesSaver.loadInteger("ImageY");
+        System.out.println("TextSize " + valuesSaver.loadInteger("TextSize"));
         textSize = valuesSaver.loadInteger("TextSize");
-        isUpdated = valuesSaver.loadBoolean("IsUpdated");
+        //System.out.println("Is created : ");
+        System.out.println("IsCreated " + valuesSaver.loadBoolean("IsCreated"));
+        //isUpdated = valuesSaver.loadBoolean("IsUpdated");
         isCreated = valuesSaver.loadBoolean("IsCreated");
+        System.out.println("IsUpdated " + valuesSaver.loadBoolean("IsUpdated"));
+        isUpdated = valuesSaver.loadBoolean("IsUpdated");
     }
 }

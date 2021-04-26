@@ -47,6 +47,41 @@ public class Parameter extends LinearLayout {
         }
     }
 
+    public Integer minValue, maxValue;
+
+    public void setMin(Integer integer){minValue = integer;}
+
+    public void setMax(Integer integer){maxValue = integer;}
+
+    public Integer getFramed(){
+        if (isInFrame()) return Integer.parseInt(editText.getText().toString());
+        else if (minValue!=null){
+            if(Integer.parseInt(editText.getText().toString())<minValue) return minValue;
+        }
+        else if (maxValue!=null){
+            if(Integer.parseInt(editText.getText().toString())>maxValue) return maxValue;
+        }
+        return Integer.parseInt(editText.getText().toString());
+    }
+
+    public Boolean isInFrame(){
+
+        Integer intValue = Integer.parseInt(editText.getText().toString());
+
+        if(minValue!=null && maxValue!=null){
+            return (intValue>=minValue && intValue<=maxValue);
+        }
+        else if(minValue!=null){
+            return intValue>minValue;
+        }
+        else if(maxValue!=null){
+            return intValue<maxValue;
+        }
+        else{
+            return true;
+        }
+    }
+
     public void setParameterName(String string){
         textView.setText(string);
     }

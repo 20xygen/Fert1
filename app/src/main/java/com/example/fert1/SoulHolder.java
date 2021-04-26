@@ -85,6 +85,9 @@ public class SoulHolder {
     }
 
     public void saveAll(){
+        System.out.println("valuesSaver " + valuesSaver);
+        System.out.println("childishness " + childishness);
+        System.out.println("laziness " + laziness);
         valuesSaver.save("Childishness", childishness);
         valuesSaver.save("Laziness", laziness);
     }

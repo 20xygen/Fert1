@@ -51,6 +51,11 @@ public class NumpadMain extends TableLayout {
         initialiseWidgets(view);
         if(ValuesHolder.isUpdated){
             System.out.println("updated");
+            ValuesHolder valuesHolder = new ValuesHolder();
+            valuesHolder.setContext(context);
+            valuesHolder.createValuesSaver();
+            valuesHolder.loadAll();
+            System.out.println("-------");
             setImageSize(ValuesHolder.getImageX(), ValuesHolder.getImageY(), context);
         }
     }

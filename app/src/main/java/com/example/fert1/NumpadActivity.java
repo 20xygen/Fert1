@@ -41,6 +41,8 @@ public class NumpadActivity extends Activity {
         num20 = numpadMain.returnRespectButton();
         numpadTaskChanger.setImageButtons(num17, num20);
         setTextSize(ValuesHolder.getTextSize());
+        numpadTaskChanger.setContext(this);
+        numpadTaskChanger.createValuesSaver();
 
         Toast toastAlready = Toast.makeText(getApplicationContext(),
                 R.string.toast_already, Toast.LENGTH_SHORT);

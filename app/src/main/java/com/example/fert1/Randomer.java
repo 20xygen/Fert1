@@ -3,6 +3,7 @@ package com.example.fert1;
 public class Randomer {
     public Integer minRandom = 0;
     public Integer maxRandom = 100;
+    public SoulHolder soulHolder;
 
     public boolean eventIsGoing = false;
 
@@ -32,6 +33,17 @@ public class Randomer {
 
     public boolean doOrNot(Integer percent, Float coefficient){
         return (minRandom + (int) (Math.random() * maxRandom)) * coefficient > percent;
+    }
+
+    float randomFloat;
+
+    public boolean doOrNot(){
+        System.out.println("doing new random");
+        soulHolder = new SoulHolder();
+        System.out.println(soulHolder.getLaziness() + soulHolder.getChildishness());
+        randomFloat = ((float) Math.random()) * 4.8f + (soulHolder.getLaziness() + soulHolder.getChildishness());
+        System.out.println(randomFloat);
+        return randomFloat > 4.4f;
     }
 
     public Integer choose(Integer quantity){

@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
     EditText editText;
     String userName;
     ValuesHolder valuesHolder;
+    ValuesSaver valuesSaver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +24,21 @@ public class MainActivity extends Activity {
         userName = String.valueOf(editText.getText());
         //ValuesHolder.setName(userName);
         valuesHolder = new ValuesHolder();
+        valuesHolder.setContext(this);
+        valuesHolder.createValuesSaver();
+        valuesSaver = new ValuesSaver(this);
+        System.out.println(valuesSaver);
+        if(!valuesSaver.loadBoolean("IsCreated")){
+            System.out.println("Already created");
+            valuesSaver.saveDefault();
+        }
+        valuesHolder.loadAll();
+        System.out.println("------------");
+        System.out.println(ValuesHolder.getImageX());
     }
 
     public String cut(String string){
-        if(string.equals("Введите ваше имя: ")){
+        if(string.equals("Введите ваше имя: ") || string.length()==0){
             return "UserName";
         }
         if(string.contains("Введите ваше имя: ")){
@@ -36,6 +48,7 @@ public class MainActivity extends Activity {
     }
 
     public void switchToCalc(View view) {
+        valuesSaver.save("IsCreated", true);
         Intent intent = new Intent(MainActivity.this, NumpadActivity.class);
         userName = String.valueOf(editText.getText());
         intent.putExtra("UserName", cut(userName));

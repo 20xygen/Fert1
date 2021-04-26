@@ -1,5 +1,6 @@
 package com.example.fert1;
 
+import android.content.Context;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,6 +18,18 @@ public class NumpadTaskChanger {
     NumpadMain numpadMain;
     ImageButton backButton;
     ImageButton equallyButton;
+    Context context;
+    ValuesSaver valuesSaver;
+
+    public void setContext(Context context){
+        this.context = context;
+    }
+
+    public void createValuesSaver(){
+        valuesSaver = new ValuesSaver(context);
+        soulHolder.setContext(context);
+        soulHolder.createValuesSaver();
+    }
 
     public void setImageButtons(ImageButton imageButton1, ImageButton imageButton2){
         backButton = imageButton1; equallyButton = imageButton2;
@@ -91,7 +104,7 @@ public class NumpadTaskChanger {
         System.out.println(polishSolver.getSymbol(newSymbol)>=3 && polishSolver.getSymbol(newSymbol)<=7);
         System.out.println(polishSolver.getSymbol(newSymbol)==8);
         System.out.println(polishSolver.getSymbol(newSymbol)!=8 && polishSolver.getSymbol(newSymbol)!=2);
-        if(taskArray.size()==0 && polishSolver.getSymbol(newSymbol)<9){
+        if(taskArray.size()==0 && polishSolver.getSymbol(newSymbol)<9 && polishSolver.getSymbol(newSymbol)!=1){
             System.out.println("Нельзя ставить знак пока нет числа");
         }
         else if (polishSolver.getSymbol(newSymbol)==2){
@@ -142,6 +155,7 @@ public class NumpadTaskChanger {
     public void update(Integer typeOfAction){
         //try {
         if(soulHolder.checkWaiting()){
+            soulHolder.loadAll();
             switch (typeOfAction){
                 case 1:
                     if(soulHolder.getTypeOfReaction()==1){
@@ -175,6 +189,7 @@ public class NumpadTaskChanger {
             //numpadMain.setQuestionType();
             numpadMain.setSimpleType();
             soulHolder.stopWaitForReaction();
+            soulHolder.saveAll();
         }
         else if(taskArray!=null) {
             switch (typeOfAction) {
@@ -210,7 +225,7 @@ public class NumpadTaskChanger {
                         }
                     } else {
                         System.out.println("We are NOT waiting");
-                        if (randomer.doOrNot(50, 1f)) {
+                        if (/*randomer.doOrNot(50, 1f)*/ randomer.doOrNot()) {
                             System.out.println("Do event");
                             switch (randomer.childOrLazy(soulHolder.getChildishness(), soulHolder.getLaziness())) {
                                 case 1:
@@ -219,7 +234,7 @@ public class NumpadTaskChanger {
                                     failTimer.setAll(10);
                                     break;
                                 case 2:
-                                    if (randomer.doOrNot(50, 1f)) {
+                                    if (randomer.doOrNot()) {
                                         System.out.println("Random answer");
                                         soulHolder.startWaitForReaction();
                                         soulHolder.setTypeOfReaction(1);

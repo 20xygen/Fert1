@@ -24,6 +24,9 @@ public class SoulActivity extends Activity {
         setContentView(R.layout.activity_soul);
 
         soulHolder = new SoulHolder();
+        soulHolder.setContext(this);
+        soulHolder.createValuesSaver();
+        soulHolder.loadAll();
         progressBarC = findViewById(R.id.progress_circular1);
         progressBarL = findViewById(R.id.progress_circular2);
         setProgress();

@@ -55,7 +55,7 @@ public class ValuesSaver {
                 editor4.apply();
                 break;
             default:
-                System.out.println("I have not this value");
+                System.out.println("I have not this value (integer)");
                 break;
         }
     }
@@ -73,7 +73,7 @@ public class ValuesSaver {
                 editor6.apply();
                 break;
             default:
-                System.out.println("I have not this value");
+                System.out.println("I have not this value (boolean)");
                 break;
         }
     }
@@ -91,7 +91,7 @@ public class ValuesSaver {
                 editor8.apply();
                 break;
             default:
-                System.out.println("I have not this value");
+                System.out.println("I have not this value (float)");
                 break;
         }
     }
@@ -124,13 +124,14 @@ public class ValuesSaver {
                 System.out.println("I have not this value");
                 break;
         }
-        return null;
+        return 50;
     }
 
     public Boolean loadBoolean(String file){
         switch (file){
             case APP_PREFERENCES_ISUPDATED:
                 if(mySettings.contains(APP_PREFERENCES_ISUPDATED)) {
+                    System.out.println(APP_PREFERENCES_ISUPDATED + " " + mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false));
                     return mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false);
                 }
                 break;
@@ -143,7 +144,7 @@ public class ValuesSaver {
                 System.out.println("I have not this value");
                 break;
         }
-        return null;
+        return false;
     }
 
     public Float loadFloat(String file){
@@ -157,6 +158,25 @@ public class ValuesSaver {
                     return mySettings.getFloat(APP_PREFERENCES_LAZINESS, 1);
                 }
         }
-        return null;
+        return 1f;
+    }
+
+    public void saveDefault(){
+        System.out.println(APP_PREFERENCES_IMAGEX);
+        save(APP_PREFERENCES_IMAGEX, 98);
+        System.out.println(APP_PREFERENCES_IMAGEY);
+        save(APP_PREFERENCES_IMAGEY, 98);
+        System.out.println(APP_PREFERENCES_CHILDISHNESS);
+        save(APP_PREFERENCES_CHILDISHNESS, 1);
+        System.out.println(APP_PREFERENCES_LAZINESS);
+        save(APP_PREFERENCES_LAZINESS,1);
+        System.out.println(APP_PREFERENCES_NAME);
+        save(APP_PREFERENCES_NAME, "UserName");
+        System.out.println(APP_PREFERENCES_TEXTSIZE);
+        save(APP_PREFERENCES_TEXTSIZE, 30);
+        System.out.println(APP_PREFERENCES_ISCREATED);
+        save(APP_PREFERENCES_ISCREATED, false);
+        System.out.println(APP_PREFERENCES_ISCREATED);
+        save(APP_PREFERENCES_ISUPDATED, false);
     }
 }
