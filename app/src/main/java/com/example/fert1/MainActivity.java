@@ -27,14 +27,15 @@ public class MainActivity extends Activity {
         valuesHolder.setContext(this);
         valuesHolder.createValuesSaver();
         valuesSaver = new ValuesSaver(this);
-        System.out.println(valuesSaver);
-        if(!valuesSaver.loadBoolean("IsCreated")){
-            System.out.println("Already created");
-            valuesSaver.saveDefault();
-        }
-        valuesHolder.loadAll();
-        System.out.println("------------");
-        System.out.println(ValuesHolder.getImageX());
+//        System.out.println(valuesSaver);
+//        if(!valuesSaver.loadBoolean("IsCreated")){
+//            System.out.println("Already created");
+//            valuesSaver.saveDefault();
+//        }
+//        valuesHolder.loadAll();
+//        System.out.println("------------");
+//        System.out.println(ValuesHolder.getImageX());
+        valuesSaver.saveDefault();
     }
 
     public String cut(String string){

@@ -14,11 +14,13 @@ public class ValuesSaver {
     public static final String APP_PREFERENCES_ISCREATED = "IsCreated";
     public static final String APP_PREFERENCES_CHILDISHNESS = "Childishness";
     public static final String APP_PREFERENCES_LAZINESS = "Laziness";
+    public ValuesHolder valuesHolder;
+    public SoulHolder soulHolder;
 
     SharedPreferences mySettings;
 
     public ValuesSaver(Context context){
-        mySettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mySettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); //use default?
     }
 
     public void save(String file, String value){
@@ -82,7 +84,8 @@ public class ValuesSaver {
         switch (file){
             case APP_PREFERENCES_CHILDISHNESS:
                 SharedPreferences.Editor editor7 = mySettings.edit();
-                editor7.putFloat(APP_PREFERENCES_ISUPDATED, value);
+                //editor7.putFloat(APP_PREFERENCES_ISUPDATED, value); aaaaxxaxaxaxaxaxaxxaaxaxaxaaxx lol
+                editor7.putFloat(APP_PREFERENCES_CHILDISHNESS, value);
                 editor7.apply();
                 break;
             case APP_PREFERENCES_LAZINESS:
@@ -131,7 +134,8 @@ public class ValuesSaver {
         switch (file){
             case APP_PREFERENCES_ISUPDATED:
                 if(mySettings.contains(APP_PREFERENCES_ISUPDATED)) {
-                    System.out.println(APP_PREFERENCES_ISUPDATED + " " + mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false));
+                    //System.out.println(APP_PREFERENCES_ISUPDATED + " " + mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false));
+                    System.out.println(mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false));
                     return mySettings.getBoolean(APP_PREFERENCES_ISUPDATED, false);
                 }
                 break;
@@ -162,21 +166,103 @@ public class ValuesSaver {
     }
 
     public void saveDefault(){
+        valuesHolder = new ValuesHolder();
+        soulHolder = new SoulHolder();
+
         System.out.println(APP_PREFERENCES_IMAGEX);
-        save(APP_PREFERENCES_IMAGEX, 98);
+        if(mySettings.contains(APP_PREFERENCES_IMAGEX)) {
+            System.out.println("I have it");
+            ValuesHolder.setImageX(loadInteger(APP_PREFERENCES_IMAGEX));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_IMAGEX, ValuesHolder.getImageX());
+        }
+
         System.out.println(APP_PREFERENCES_IMAGEY);
-        save(APP_PREFERENCES_IMAGEY, 98);
+        if(mySettings.contains(APP_PREFERENCES_IMAGEY)) {
+            System.out.println("I have it");
+            ValuesHolder.setImageY(loadInteger(APP_PREFERENCES_IMAGEY));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_IMAGEY, ValuesHolder.getImageY());
+        }
+
         System.out.println(APP_PREFERENCES_CHILDISHNESS);
-        save(APP_PREFERENCES_CHILDISHNESS, 1);
+        if(mySettings.contains(APP_PREFERENCES_CHILDISHNESS)) {
+            System.out.println("I have it");
+            soulHolder.setChildishness(loadFloat(APP_PREFERENCES_CHILDISHNESS));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_CHILDISHNESS, soulHolder.getChildishness());
+        }
+
         System.out.println(APP_PREFERENCES_LAZINESS);
-        save(APP_PREFERENCES_LAZINESS,1);
-        System.out.println(APP_PREFERENCES_NAME);
-        save(APP_PREFERENCES_NAME, "UserName");
+        if(mySettings.contains(APP_PREFERENCES_LAZINESS)) {
+            System.out.println("I have it");
+            soulHolder.setLaziness(loadFloat(APP_PREFERENCES_LAZINESS));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_LAZINESS, soulHolder.getLaziness());
+        }
+
         System.out.println(APP_PREFERENCES_TEXTSIZE);
-        save(APP_PREFERENCES_TEXTSIZE, 30);
+        if(mySettings.contains(APP_PREFERENCES_TEXTSIZE)) {
+            System.out.println("I have it");
+            ValuesHolder.setTextSize(loadInteger(APP_PREFERENCES_TEXTSIZE));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_TEXTSIZE, ValuesHolder.getTextSize());
+        }
+
+        System.out.println(APP_PREFERENCES_NAME);
+        if(mySettings.contains(APP_PREFERENCES_NAME)) {
+            System.out.println("I have it");
+            ValuesHolder.setName(loadString(APP_PREFERENCES_NAME));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_NAME, ValuesHolder.getName());
+        }
+
         System.out.println(APP_PREFERENCES_ISCREATED);
-        save(APP_PREFERENCES_ISCREATED, false);
-        System.out.println(APP_PREFERENCES_ISCREATED);
-        save(APP_PREFERENCES_ISUPDATED, false);
+        if(mySettings.contains(APP_PREFERENCES_ISCREATED)) {
+            System.out.println("I have it");
+            ValuesHolder.setIsCreated(loadBoolean(APP_PREFERENCES_ISCREATED));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_ISCREATED, ValuesHolder.getCreateStatus());
+        }
+
+        System.out.println(APP_PREFERENCES_ISUPDATED);
+        if(mySettings.contains(APP_PREFERENCES_ISUPDATED)) {
+            System.out.println("I have it");
+            ValuesHolder.setIsUpdated(loadBoolean(APP_PREFERENCES_ISUPDATED));
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_ISUPDATED, ValuesHolder.getUpdateStatus());
+        }
+
+//        save(APP_PREFERENCES_IMAGEX, 98);
+//        System.out.println(APP_PREFERENCES_IMAGEY);
+//        save(APP_PREFERENCES_IMAGEY, 98);
+//        System.out.println(APP_PREFERENCES_CHILDISHNESS);
+//        save(APP_PREFERENCES_CHILDISHNESS, 1);
+//        System.out.println(APP_PREFERENCES_LAZINESS);
+//        save(APP_PREFERENCES_LAZINESS,1);
+//        System.out.println(APP_PREFERENCES_NAME);
+//        save(APP_PREFERENCES_NAME, "UserName");
+//        System.out.println(APP_PREFERENCES_TEXTSIZE);
+//        save(APP_PREFERENCES_TEXTSIZE, 30);
+//        System.out.println(APP_PREFERENCES_ISCREATED);
+//        save(APP_PREFERENCES_ISCREATED, false);
+//        System.out.println(APP_PREFERENCES_ISCREATED);
+//        save(APP_PREFERENCES_ISUPDATED, false);
     }
 }

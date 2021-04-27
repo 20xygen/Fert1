@@ -16,6 +16,14 @@ public class ValuesHolder {
 
     }
 
+    public static void setIsUpdated(boolean isUpdated) {
+        ValuesHolder.isUpdated = isUpdated;
+    }
+
+    public static void setIsCreated(boolean isCreated) {
+        ValuesHolder.isCreated = isCreated;
+    }
+
     public void createValuesSaver(){
         valuesSaver = new ValuesSaver(context);
     }
