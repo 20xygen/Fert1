@@ -165,7 +165,10 @@ public class ValuesSaver {
         return 1f;
     }
 
-    public void saveDefault(){
+    public boolean exitBool;
+
+    public Boolean saveDefault(){
+        exitBool = false;
         valuesHolder = new ValuesHolder();
         soulHolder = new SoulHolder();
 
@@ -173,6 +176,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_IMAGEX)) {
             System.out.println("I have it");
             ValuesHolder.setImageX(loadInteger(APP_PREFERENCES_IMAGEX));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -183,6 +187,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_IMAGEY)) {
             System.out.println("I have it");
             ValuesHolder.setImageY(loadInteger(APP_PREFERENCES_IMAGEY));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -193,6 +198,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_CHILDISHNESS)) {
             System.out.println("I have it");
             soulHolder.setChildishness(loadFloat(APP_PREFERENCES_CHILDISHNESS));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -203,6 +209,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_LAZINESS)) {
             System.out.println("I have it");
             soulHolder.setLaziness(loadFloat(APP_PREFERENCES_LAZINESS));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -213,6 +220,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_TEXTSIZE)) {
             System.out.println("I have it");
             ValuesHolder.setTextSize(loadInteger(APP_PREFERENCES_TEXTSIZE));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -223,6 +231,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_NAME)) {
             System.out.println("I have it");
             ValuesHolder.setName(loadString(APP_PREFERENCES_NAME));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -233,6 +242,7 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_ISCREATED)) {
             System.out.println("I have it");
             ValuesHolder.setIsCreated(loadBoolean(APP_PREFERENCES_ISCREATED));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
@@ -243,12 +253,14 @@ public class ValuesSaver {
         if(mySettings.contains(APP_PREFERENCES_ISUPDATED)) {
             System.out.println("I have it");
             ValuesHolder.setIsUpdated(loadBoolean(APP_PREFERENCES_ISUPDATED));
+            exitBool = true;
         }
         else {
             System.out.println("I do not have it");
             save(APP_PREFERENCES_ISUPDATED, ValuesHolder.getUpdateStatus());
         }
 
+        return exitBool;
 //        save(APP_PREFERENCES_IMAGEX, 98);
 //        System.out.println(APP_PREFERENCES_IMAGEY);
 //        save(APP_PREFERENCES_IMAGEY, 98);

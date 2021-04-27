@@ -15,6 +15,7 @@
         tools:layout_editor_absoluteY="84dp">
 
         <TextView
+            android:id="@+id/helloText"
             android:textColor="#ffffff"
             android:shadowColor="@color/text_blue"
             android:shadowDx="4"

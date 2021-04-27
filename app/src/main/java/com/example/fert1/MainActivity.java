@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -14,6 +16,7 @@ public class MainActivity extends Activity {
     String userName;
     ValuesHolder valuesHolder;
     ValuesSaver valuesSaver;
+    TextView hello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class MainActivity extends Activity {
 
         editText = findViewById(R.id.editText);
         userName = String.valueOf(editText.getText());
+        hello = findViewById(R.id.helloText);
         //ValuesHolder.setName(userName);
         valuesHolder = new ValuesHolder();
         valuesHolder.setContext(this);
@@ -35,7 +39,12 @@ public class MainActivity extends Activity {
 //        valuesHolder.loadAll();
 //        System.out.println("------------");
 //        System.out.println(ValuesHolder.getImageX());
-        valuesSaver.saveDefault();
+        if(valuesSaver.saveDefault()){
+            editText.setVisibility(View.INVISIBLE);
+            hello.setText("Приветствую тебя, " + valuesSaver.loadString("Name") + "!");
+            hello.setTextSize(50);
+            hello.setGravity(Gravity.CENTER);
+        }
     }
 
     public String cut(String string){
@@ -53,8 +62,11 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, NumpadActivity.class);
         userName = String.valueOf(editText.getText());
         intent.putExtra("UserName", cut(userName));
-        System.out.println(cut(userName));
-        valuesHolder.setName(cut(userName));
+        if(userName.length()!=0){
+            valuesHolder.setName(cut(userName));
+            valuesSaver.save("Name", cut(userName));
+            System.out.println(cut(userName));
+        }
         startActivity(intent);
     }
 }
