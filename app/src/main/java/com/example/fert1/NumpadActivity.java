@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ public class NumpadActivity extends Activity {
     NumpadTaskChanger numpadTaskChanger;
     NumpadMain numpadMain;
     ImageButton num17, num20;
+    NewCustomDialog newCustomDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class NumpadActivity extends Activity {
 
         task = findViewById(R.id.textView);
         numpadTaskChanger = new NumpadTaskChanger();
+        numpadTaskChanger.setActivity(this);
         numpadTaskChanger.setTask(task);
         numpadMain = findViewById(R.id.my_numpad);
         dialog = findViewById(R.id.textView1);
@@ -64,7 +68,8 @@ public class NumpadActivity extends Activity {
                                 startActivity(intentSoul);
                                 break;
                             case R.id.calc_menu:
-                                toastAlready.show();
+//                                toastAlready.show();
+                                numpadTaskChanger.clearTaskArray();
                                 break;
                             case R.id.settings_menu:
                                 startActivity(intentSettings);
@@ -160,5 +165,16 @@ public class NumpadActivity extends Activity {
         task.setTextSize(integer);
         dialog.setTextSize(integer);
         System.out.println(task.getTextSize() + " " + dialog.getTextSize());
+    }
+
+    public void addLearningLevel(){
+        numpadTaskChanger.getValuesSaver().save("LearningProgress", numpadTaskChanger.getValuesSaver().loadInteger("LearningProgress")+1);
+        ValuesHolder.setLearningProgress(numpadTaskChanger.getValuesSaver().loadInteger("LearningProgress"));
+    }
+
+    public void startDialog(){
+        newCustomDialog = new NewCustomDialog(this);
+        newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        newCustomDialog.show();
     }
 }

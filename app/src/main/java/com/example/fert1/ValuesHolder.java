@@ -11,6 +11,15 @@ public class ValuesHolder {
     public static boolean isCreated = false;
     public static ValuesSaver valuesSaver;
     public Context context;
+    public static Integer learningProgress = 0;
+
+    public static Integer getLearningProgress() {
+        return learningProgress;
+    }
+
+    public static void setLearningProgress(Integer learningProgress) {
+        ValuesHolder.learningProgress = learningProgress;
+    }
 
     public ValuesHolder(){
 
@@ -84,11 +93,14 @@ public class ValuesHolder {
         valuesSaver.save("TextSize", textSize);
         valuesSaver.save("IsUpdated", isUpdated);
         valuesSaver.save("IsCreated", isCreated);
+        valuesSaver.save("LearningProgress", learningProgress);
     }
 
     public void loadAll(){
         System.out.println("Name " + valuesSaver.loadString("Name"));
         name = valuesSaver.loadString("Name");
+        System.out.println("LearningProgress " + valuesSaver.loadInteger("LearningProgress"));
+        imageX = valuesSaver.loadInteger("LearningProgress");
         System.out.println("ImageX " + valuesSaver.loadInteger("ImageX"));
         imageX = valuesSaver.loadInteger("ImageX");
         System.out.println("ImageY " + valuesSaver.loadInteger("ImageY"));

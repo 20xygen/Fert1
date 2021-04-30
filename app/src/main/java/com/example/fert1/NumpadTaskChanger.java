@@ -1,6 +1,9 @@
 package com.example.fert1;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,6 +23,13 @@ public class NumpadTaskChanger {
     ImageButton equallyButton;
     Context context;
     ValuesSaver valuesSaver;
+    NewCustomDialog newCustomDialog;
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    Activity activity;
 
     public void setContext(Context context){
         this.context = context;
@@ -29,6 +39,10 @@ public class NumpadTaskChanger {
         valuesSaver = new ValuesSaver(context);
         soulHolder.setContext(context);
         soulHolder.createValuesSaver();
+    }
+
+    public ValuesSaver getValuesSaver() {
+        return valuesSaver;
     }
 
     public void setImageButtons(ImageButton imageButton1, ImageButton imageButton2){
@@ -63,6 +77,11 @@ public class NumpadTaskChanger {
         failTimer = new FailTimer();
         randomer = new Randomer();
         soulHolder = new SoulHolder();
+    }
+
+    public void clearTaskArray(){
+        taskArray = new ArrayList<String>();
+        task.setText("0");
     }
 
     public void setTask (TextView textView){
@@ -150,12 +169,21 @@ public class NumpadTaskChanger {
         symbolUpdate(updateAnswer);
     }
 
+    public void startNewDialog(){
+        if(valuesSaver.loadInteger("LearningProgress")==0){
+            newCustomDialog = new NewCustomDialog(activity);
+            newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            newCustomDialog.show();
+        }
+    }
+
     Integer intRandom;
 
     public void update(Integer typeOfAction){
         //try {
         if(soulHolder.checkWaiting()){
             soulHolder.loadAll();
+
             switch (typeOfAction){
                 case 1:
                     if(soulHolder.getTypeOfReaction()==1){
@@ -212,6 +240,7 @@ public class NumpadTaskChanger {
                                 System.out.println("Ended");
                                 soulHolder.setTypeOfReaction(2);
                                 soulHolder.startWaitForReaction();
+                                startNewDialog();
                                 //numpadMain.setQuestionType();
                                 numpadMain.setQuestionType();
                                 dialog.setText("Процент ошибки: 1%");
@@ -237,6 +266,7 @@ public class NumpadTaskChanger {
                                     if (randomer.doOrNot()) {
                                         System.out.println("Random answer");
                                         soulHolder.startWaitForReaction();
+                                        startNewDialog();
                                         soulHolder.setTypeOfReaction(1);
                                         //numpadMain.setQuestionType();
                                         numpadMain.setQuestionType();
@@ -249,6 +279,7 @@ public class NumpadTaskChanger {
                                         simpleUpdate();
                                         soulHolder.setTypeOfReaction(0);
                                         soulHolder.startWaitForReaction();
+                                        startNewDialog();
                                         //numpadMain.setQuestionType();
                                         numpadMain.setQuestionType();
                                     }
@@ -261,6 +292,7 @@ public class NumpadTaskChanger {
                                 simpleUpdate();
                                 soulHolder.setTypeOfReaction(0);
                                 soulHolder.startWaitForReaction();
+                                startNewDialog();
                                 //numpadMain.setQuestionType();
                                 numpadMain.setQuestionType();
                             }
@@ -317,5 +349,10 @@ public class NumpadTaskChanger {
             if (taskArray.get(i).contains(")")) rightBrackets++;
         }
         return rightBrackets<leftBrackets;
+    }
+
+    public void addLearningLevel(){
+        valuesSaver.save("LearningProgress", valuesSaver.loadInteger("LearningProgress")+1);
+        ValuesHolder.setLearningProgress(valuesSaver.loadInteger("LearningProgress"));
     }
 }

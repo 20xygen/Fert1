@@ -14,6 +14,7 @@ public class ValuesSaver {
     public static final String APP_PREFERENCES_ISCREATED = "IsCreated";
     public static final String APP_PREFERENCES_CHILDISHNESS = "Childishness";
     public static final String APP_PREFERENCES_LAZINESS = "Laziness";
+    public static final String APP_PREFERENCES_LEARNINGPROGRESS = "LearningProgress";
     public ValuesHolder valuesHolder;
     public SoulHolder soulHolder;
 
@@ -55,6 +56,11 @@ public class ValuesSaver {
                 SharedPreferences.Editor editor4 = mySettings.edit();
                 editor4.putInt(APP_PREFERENCES_TEXTSIZE, value);
                 editor4.apply();
+                break;
+            case APP_PREFERENCES_LEARNINGPROGRESS:
+                SharedPreferences.Editor editor0 = mySettings.edit();
+                editor0.putInt(APP_PREFERENCES_LEARNINGPROGRESS, value);
+                editor0.apply();
                 break;
             default:
                 System.out.println("I have not this value (integer)");
@@ -123,6 +129,11 @@ public class ValuesSaver {
                     return mySettings.getInt(APP_PREFERENCES_TEXTSIZE, 30);
                 }
                 break;
+            case APP_PREFERENCES_LEARNINGPROGRESS:
+                if(mySettings.contains(APP_PREFERENCES_LEARNINGPROGRESS)) {
+                    return mySettings.getInt(APP_PREFERENCES_LEARNINGPROGRESS, 0);
+                }
+                break;
             default:
                 System.out.println("I have not this value");
                 break;
@@ -181,6 +192,17 @@ public class ValuesSaver {
         else {
             System.out.println("I do not have it");
             save(APP_PREFERENCES_IMAGEX, ValuesHolder.getImageX());
+        }
+
+        System.out.println(APP_PREFERENCES_LEARNINGPROGRESS);
+        if(mySettings.contains(APP_PREFERENCES_LEARNINGPROGRESS)) {
+            System.out.println("I have it");
+            ValuesHolder.setLearningProgress(loadInteger(APP_PREFERENCES_LEARNINGPROGRESS));
+            exitBool = true;
+        }
+        else {
+            System.out.println("I do not have it");
+            save(APP_PREFERENCES_LEARNINGPROGRESS, ValuesHolder.getLearningProgress());
         }
 
         System.out.println(APP_PREFERENCES_IMAGEY);
