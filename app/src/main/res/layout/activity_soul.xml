@@ -115,7 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemBackground="@color/black"
-            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/bottom_navigation_item_background_colors"
+            app:itemTextColor="@color/bottom_navigation_item_background_colors"
             app:menu="@menu/menu_bottom_navigation" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

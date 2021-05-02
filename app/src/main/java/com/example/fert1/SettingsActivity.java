@@ -40,7 +40,7 @@ public class SettingsActivity extends Activity {
         //parameter2.setBroken();
         parameter3.setParameterName("Ширина плитки");
         //parameter3.setBroken();
-        parameter4.setParameterName("Размер текста (1-3)");
+        parameter4.setParameterName("Размер текста");
         //parameter1.setTextSize(ValuesHolder.getTextSize());
         //parameter2.setTextSize(ValuesHolder.getTextSize());
         //parameter3.setTextSize(ValuesHolder.getTextSize());

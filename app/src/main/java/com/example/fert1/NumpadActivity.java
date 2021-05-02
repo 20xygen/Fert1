@@ -65,13 +65,16 @@ public class NumpadActivity extends Activity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.soul_menu:
+//                                bottomNavigationView.setSelectedItemId(R.id.soul_menu);
                                 startActivity(intentSoul);
                                 break;
                             case R.id.calc_menu:
+//                                bottomNavigationView.setSelectedItemId(R.id.calc_menu);
 //                                toastAlready.show();
                                 numpadTaskChanger.clearTaskArray();
                                 break;
                             case R.id.settings_menu:
+//                                bottomNavigationView.setSelectedItemId(R.id.settings_menu);
                                 startActivity(intentSettings);
                                 break;
                         }
