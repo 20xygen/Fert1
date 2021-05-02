@@ -128,13 +128,13 @@ public class NumpadActivity extends Activity {
             @Override public void onClick(View v) { numpadTaskChanger.update("-"); }});
 
         findViewById(R.id.imageButton17).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update(1); }});
+            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(1); }});
 
         findViewById(R.id.imageButton18).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("0"); }});
 
         findViewById(R.id.imageButton19).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update(2); }});
+            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(2); }});
 
         findViewById(R.id.imageButton20).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("+"); }});

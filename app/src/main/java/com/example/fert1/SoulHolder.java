@@ -30,7 +30,10 @@ public class SoulHolder {
         SoulHolder.typeOfReaction = typeOfReaction;
     }
 
-    public void startWaitForReaction(){waitingFotReaction=true;}
+    public void startWaitForReaction(){
+        System.out.println("--------------------------------------------------------------------------------------- started waiting");
+        waitingFotReaction=true;
+    }
 
     public void stopWaitForReaction(){waitingFotReaction=false;}
 

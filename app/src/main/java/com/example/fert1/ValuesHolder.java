@@ -12,6 +12,15 @@ public class ValuesHolder {
     public static ValuesSaver valuesSaver;
     public Context context;
     public static Integer learningProgress = 0;
+    public static Integer typeOfWaiting;
+
+    public static Integer getTypeOfWaiting() {
+        return typeOfWaiting;
+    }
+
+    public static void setTypeOfWaiting(Integer typeOfWaiting) {
+        ValuesHolder.typeOfWaiting = typeOfWaiting;
+    }
 
     public static Integer getLearningProgress() {
         return learningProgress;

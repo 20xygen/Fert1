@@ -31,6 +31,10 @@ public class Randomer {
         return (int) (Math.random() * 1000);
     }
 
+    public Double getDouble(){
+        return (double) (-1000d + Math.random() * 2000d);
+    }
+
     public boolean doOrNot(Integer percent, Float coefficient){
         return (minRandom + (int) (Math.random() * maxRandom)) * coefficient > percent;
     }
@@ -47,7 +51,7 @@ public class Randomer {
     }
 
     public Integer choose(Integer quantity){
-        return 1 + (int) (Math.random() * (quantity-1));
+        return 1 + (int) (Math.random() * (quantity));
     }
 
     Double randomCOL;

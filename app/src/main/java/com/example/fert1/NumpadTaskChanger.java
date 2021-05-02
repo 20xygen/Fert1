@@ -77,6 +77,8 @@ public class NumpadTaskChanger {
         failTimer = new FailTimer();
         randomer = new Randomer();
         soulHolder = new SoulHolder();
+
+
     }
 
     public void clearTaskArray(){
@@ -95,6 +97,10 @@ public class NumpadTaskChanger {
 
     public void setNumpadMain(NumpadMain numpadMain) {
         this.numpadMain = numpadMain;
+
+//        if(soulHolder.checkWaiting()){
+//            numpadMain.setQuestionType();
+//        }
     }
 
     public boolean hasPoint(){
@@ -157,6 +163,7 @@ public class NumpadTaskChanger {
     Double updateAnswer;
 
     public void simpleUpdate(){
+        addZeros();
         System.out.println("i am simple");
         dialog.setText("Процент ошибки: 1%");
         System.out.println("Передаю собирателю: " + taskArray);
@@ -167,6 +174,51 @@ public class NumpadTaskChanger {
         //taskArray.clear();
         //taskArray.add(updateAnswer.toString());
         symbolUpdate(updateAnswer);
+    }
+
+    public Boolean hasSpecialMinuses = true;
+
+    public void addZeros(){
+        System.out.println("I add zeros: " + taskArray);
+        if (taskArray.size()>1){
+            System.out.println("Size is more that 1");
+            hasSpecialMinuses = true;
+            while (hasSpecialMinuses){
+                System.out.println("Current taskArray is: " + taskArray);
+                hasSpecialMinuses = false;
+                for (int i = 0; i < taskArray.size(); i++) {
+                    System.out.println("Symbol " + i + " is " + taskArray.get(i));
+                    if(taskArray.size()>2){
+                        System.out.println("Size is more that 1");
+                        if(i>0){
+                            if(taskArray.get(i).equals("-") && !polishSolver.isNumber(taskArray.get(i-1))){
+                                System.out.println("It has not number before minus, look: " + taskArray);
+                                taskArray.add(i-1, "0");
+                                hasSpecialMinuses = true;
+                                System.out.println("I fixed it, look: " + taskArray);
+                                break;
+                            }
+                        }
+                    }
+                    else if(taskArray.get(0).equals("-")){
+                        System.out.println("Size is less that 2");
+                        System.out.println("It has not number before minus in first position, look: " + taskArray);
+                        taskArray.add(0, "0");
+                        hasSpecialMinuses = true;
+                        System.out.println("I fixed it, look: " + taskArray);
+                        break;
+                    };
+                }
+            }
+        }
+        else if(taskArray.size()>0){
+            if(taskArray.get(0).equals("-")){
+                System.out.println("Size is less that 2");
+                taskArray.add(0, "0");
+                hasSpecialMinuses = true;
+            }
+        }
+        System.out.println("After: " + taskArray);
     }
 
     public void startNewDialog(){
@@ -317,7 +369,10 @@ public class NumpadTaskChanger {
 
     public void symbolUpdate (Double inputSymbolUpdate){
         try {
-            if(inputSymbolUpdate%1==0.0) {
+            if(inputSymbolUpdate.toString().contains("Infinity")){
+                taskArray = new ArrayList<String>();
+            }
+            else if(inputSymbolUpdate%1==0.0) {
                 symbolUpdateInteger = (int) (double) inputSymbolUpdate;
                 symbolUpdateString=symbolUpdateInteger.toString();
                 taskArray.clear();
@@ -336,6 +391,40 @@ public class NumpadTaskChanger {
         catch (Exception e){
             taskChanger.notifyError();
         }
+        clearPoints();
+        addZeros();
+    }
+
+    public boolean canMoveToInteger(String string){
+        try {
+            return Double.parseDouble(string) % 1 == 0;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public boolean canMoveToInteger(Double doubleInput){
+        try {
+            return doubleInput % 1 == 0;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void symbolUpdate (String inputSymbolUpdate){
+        taskArray.clear();
+        if(!(inputSymbolUpdate.contains("Infinity"))){
+            for (int i = 0; i < inputSymbolUpdate.length(); i++) {
+                taskArray.add(inputSymbolUpdate.substring(i,i+1));;
+            }
+        }
+        clearPoints();
+        addZeros();
     }
 
     Integer leftBrackets = 0;
@@ -354,5 +443,332 @@ public class NumpadTaskChanger {
     public void addLearningLevel(){
         valuesSaver.save("LearningProgress", valuesSaver.loadInteger("LearningProgress")+1);
         ValuesHolder.setLearningProgress(valuesSaver.loadInteger("LearningProgress"));
+    }
+
+    public ArrayList<String> clonedTaskArray;
+    public Integer points = 0;
+
+    public void clearPoints(){
+        System.out.println("I clear points");
+        System.out.println(taskArray);
+        points = 0;
+        for (int i = 0; i < taskArray.size(); i++) {
+            if(taskArray.get(i).equals(".")){
+                points++;
+            }
+        }
+        while (points>1){
+            taskArray.remove(".");
+            points = 0;
+            for (int i = 0; i < taskArray.size(); i++) {
+                if(taskArray.get(i).equals(".")){
+                    points++;
+                }
+            }
+        }
+        System.out.println("After: " + taskArray);
+    }
+
+    public String cutTail(String string){
+        if(string.length()>7) string = string.substring(0, 7);
+        return string;
+    }
+
+    public String stringRandom = "";
+    public Integer positionType = 0;
+    public Integer firstRandom = 0;
+    public Integer secondRandom = 0;
+    public Double wrongDouble = 0d;
+
+    public Double randomDouble = 0d;
+    public Double firstRandomDouble = 0d;
+    public Double secondRandomDouble = 0d;
+
+    public void startEvent(Integer type){
+        switch (type){
+            case 0:
+                simpleUpdate();
+                soulHolder.setTypeOfReaction(0);
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                numpadMain.setQuestionType();
+                break;
+            case 11:
+                //numpadMain.setQuestionType();
+                System.out.println("I am lazy");
+                dialog.setText("Мне лень, зайди через секунд 10");
+                failTimer.setAll(10);
+                break;
+            case 12:
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                soulHolder.setTypeOfReaction(2);
+                //numpadMain.setQuestionType();
+                numpadMain.setQuestionType();
+                dialog.setText("Что-то из этого...");
+//                soulHolder.startWaitForReaction();
+//                startNewDialog();
+//                soulHolder.setTypeOfReaction(1);
+//                numpadMain.setQuestionType();
+                intRandom = randomer.getRandom();
+                randomDouble = randomer.getDouble();
+                //stringRandom = intRandom.toString();
+                if(randomer.choose(2)==1){
+                    System.out.println("Передаю собирателю: " + taskArray);
+                    taskArray = polishSolver.solve(taskArray);
+                    System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                    stringRandom = polishSolver.count(taskArray).toString() + cutTail(randomDouble.toString());
+                    task.setText(polishSolver.count(taskArray).toString() + " или " + cutTail(randomDouble.toString()));
+                }
+                else{
+                    System.out.println("Передаю собирателю: " + taskArray);
+                    taskArray = polishSolver.solve(taskArray);
+                    System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                    stringRandom = cutTail(randomDouble.toString()) + polishSolver.count(taskArray).toString();
+                    task.setText(cutTail(randomDouble.toString()) + " или " + polishSolver.count(taskArray).toString());
+                }
+                symbolUpdate(stringRandom);
+                break;
+            case 13:
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                soulHolder.setTypeOfReaction(2);
+                //numpadMain.setQuestionType();
+                numpadMain.setQuestionType();
+                dialog.setText("Что-то из этого...");
+//                soulHolder.startWaitForReaction();
+//                startNewDialog();
+//                soulHolder.setTypeOfReaction(1);
+//                numpadMain.setQuestionType();
+                firstRandom = randomer.getRandom();
+                firstRandomDouble = randomer.getDouble();
+                secondRandom = randomer.getRandom();
+                secondRandomDouble = randomer.getDouble();
+                //stringRandom = intRandom.toString();
+                positionType = randomer.choose(3);
+                switch (positionType){
+                    case 1:
+                        System.out.println("Передаю собирателю: " + taskArray);
+                        taskArray = polishSolver.solve(taskArray);
+                        System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+//                        stringRandom = polishSolver.count(taskArray).toString() + firstRandom.toString() + secondRandom.toString();
+//                        task.setText(polishSolver.count(taskArray).toString() + " или " + firstRandom.toString() + " или " + secondRandom.toString());
+                        stringRandom = polishSolver.count(taskArray).toString() + cutTail(firstRandomDouble.toString()) + cutTail(secondRandomDouble.toString());
+                        task.setText(polishSolver.count(taskArray).toString() + " или " + cutTail(firstRandomDouble.toString()) + " или " + cutTail(secondRandomDouble.toString()));
+                        break;
+                    case  2:
+                        System.out.println("Передаю собирателю: " + taskArray);
+                        taskArray = polishSolver.solve(taskArray);
+                        System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                        stringRandom = cutTail(firstRandomDouble.toString()) + polishSolver.count(taskArray).toString() + cutTail(secondRandomDouble.toString());
+                        task.setText(cutTail(firstRandomDouble.toString()) + " или " + polishSolver.count(taskArray).toString() + " или " + cutTail(secondRandomDouble.toString()));
+                        break;
+                    case  3:
+                        System.out.println("Передаю собирателю: " + taskArray);
+                        taskArray = polishSolver.solve(taskArray);
+                        System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                        stringRandom = firstRandomDouble.toString() + secondRandomDouble.toString() + polishSolver.count(taskArray).toString();
+                        task.setText(cutTail(firstRandomDouble.toString()) + " или " + cutTail(secondRandomDouble.toString()) + " или " + polishSolver.count(taskArray).toString());
+                        break;
+                }
+                symbolUpdate(stringRandom);
+                break;
+            case 21:
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                soulHolder.setTypeOfReaction(1);
+                //numpadMain.setQuestionType();
+                numpadMain.setQuestionType();
+                randomDouble = randomer.getDouble();
+                task.setText(cutTail(randomDouble.toString()));
+                symbolUpdate(cutTail(randomDouble.toString()));
+                break;
+            case 22:
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                soulHolder.setTypeOfReaction(1);
+                //numpadMain.setQuestionType();
+                numpadMain.setQuestionType();
+                System.out.println("Передаю собирателю: " + taskArray);
+                taskArray = polishSolver.solve(taskArray);
+                System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                wrongDouble = 0 - polishSolver.count(taskArray);
+                System.out.println("wrongDouble is:" + wrongDouble);
+                if (canMoveToInteger(wrongDouble)){
+                    symbolUpdate((double) (int) (double) wrongDouble);
+                    task.setText(String.valueOf((int) (double) wrongDouble));
+//                    task.setText(Integer.parseInt(wrongDouble.toString()) +"");
+                    break;
+                }
+                else {
+                    symbolUpdate(wrongDouble);
+                    task.setText(wrongDouble +"");
+                    break;
+                }
+            case 23:
+                soulHolder.startWaitForReaction();
+                startNewDialog();
+                soulHolder.setTypeOfReaction(1);
+                //numpadMain.setQuestionType();
+                numpadMain.setQuestionType();
+                System.out.println("Передаю собирателю: " + taskArray);
+                taskArray = polishSolver.solve(taskArray);
+                System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+                positionType = randomer.choose(2);
+                switch (positionType){
+                    case 1:
+                        wrongDouble = polishSolver.count(taskArray) + 1;
+                        break;
+                    case 2:
+                        wrongDouble = polishSolver.count(taskArray) - 1;
+                        break;
+                }
+                if (canMoveToInteger(wrongDouble)){
+                    symbolUpdate((double) (int) (double) wrongDouble);
+                    task.setText(String.valueOf((int) (double) wrongDouble));
+                    break;
+                }
+                else {
+                    symbolUpdate(wrongDouble);
+                    task.setText(wrongDouble +"");
+                    break;
+                }
+
+        }
+    }
+
+    public void specialUpdate(Integer typeOfAction){
+        System.out.println("Now taskArray is: " + taskArray);
+        addZeros();
+        clearPoints();
+        soulHolder.loadAll();
+        if(soulHolder.checkWaiting()){
+            switch (typeOfAction){
+                case 1:
+                    if(soulHolder.getTypeOfReaction()==1){
+                        System.out.println("disrespect childishness");
+                        soulHolder.lazinessFromChildishness(randomer.getRoughly(0.2f));
+                    }
+                    else if(soulHolder.getTypeOfReaction()==2){
+                        System.out.println("disrespect laziness");
+                        soulHolder.childishnessFromLaziness(randomer.getRoughly(0.2f));
+                    }
+                    else if(soulHolder.getTypeOfReaction()==0){
+                        System.out.println("disrespect truth");
+                        soulHolder.increase(randomer.getRoughly(0.15f));
+                    }
+                    break;
+                case 2:
+                    if(soulHolder.getTypeOfReaction()==2){
+                        System.out.println("respect laziness");
+                        soulHolder.lazinessFromChildishness(randomer.getRoughly(0.2f));
+                    }
+                    else if(soulHolder.getTypeOfReaction()==1){
+                        System.out.println("respect childishness");
+                        soulHolder.childishnessFromLaziness(randomer.getRoughly(0.2f));
+                    }
+                    else if(soulHolder.getTypeOfReaction()==0){
+                        System.out.println("respect truth");
+                        soulHolder.decrease(randomer.getRoughly(0.15f));
+                    }
+                    break;
+            }
+            //numpadMain.setQuestionType();
+            numpadMain.setSimpleType();
+            soulHolder.stopWaitForReaction();
+            soulHolder.saveAll();
+        }
+        else if(taskArray!=null) {
+            switch (typeOfAction) {
+                case 1:
+                    if (taskArray.size() > 1) {
+                        taskArray.remove(taskArray.size() - 1);
+                    } else if (taskArray.size() == 1) {
+                        taskArray.remove(taskArray.size() - 1);
+                        task.setText("0");
+                    }
+                    taskChanger.changeWithArray(taskArray);
+                    break;
+                case 2:
+                    System.out.println("Tapped equally");
+                    if (failTimer.getIsWaiting()) {
+                        System.out.println("We are waiting");
+                        if (failTimer.isEnded()) {
+                            if (taskArray.size()>0){
+                                System.out.println(taskArray);
+                                System.out.println("Ended");
+                                soulHolder.setTypeOfReaction(2);
+                                soulHolder.startWaitForReaction();
+                                startNewDialog();
+                                //numpadMain.setQuestionType();
+                                numpadMain.setQuestionType();
+                                dialog.setText("Процент ошибки: 1%");
+                                simpleUpdate();
+                            }
+                            else symbolUpdate(0d);
+
+                        } else {
+                            System.out.println("Not ended");
+                            dialog.setText("Мне лень, зайди несколько секунд");
+                        }
+                    } else {
+                        System.out.println("We are NOT waiting");
+                        if (/*randomer.doOrNot(50, 1f)*/ randomer.doOrNot()) {
+                            System.out.println("Do event");
+//                            switch (randomer.childOrLazy(soulHolder.getChildishness(), soulHolder.getLaziness())) {
+//                                case 1:
+//                                    startEvent(11);
+//                                    break;
+//                                case 2:
+//                                    if (randomer.doOrNot()) {
+//                                        startEvent(21);
+//                                    } else {
+//                                        startEvent(0);
+//                                    }
+//                                    dialog.setText("Процент ошибки: 50%");
+//                            }
+                            switch (randomer.childOrLazy(soulHolder.getChildishness(), soulHolder.getLaziness())) {
+                                case 1:
+                                    switch (randomer.choose(3)){
+                                        case 1:
+                                            startEvent(11);
+                                            break;
+                                        case 2:
+                                            startEvent(12);
+                                            break;
+                                        case 3:
+                                            startEvent(13);
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    dialog.setText("Процент ошибки: +- 50%");
+                                    switch (randomer.choose(3)){
+                                        case 1:
+                                            startEvent(21);
+                                            break;
+                                        case 2:
+                                            startEvent(22);
+                                            break;
+                                        case 3:
+                                            startEvent(23);
+                                            break;
+                                    }
+                                    break;
+                            }
+                        } else {
+                            if(taskArray.size()>0){
+                                System.out.println("Do Simple");
+                                dialog.setText("Процент ошибки: 1%");
+                                startEvent(0);
+                            }
+                            else symbolUpdate(0d);
+                        }
+                    }
+            }
+        }
+        else {
+            symbolUpdate(0d);
+        }
     }
 }

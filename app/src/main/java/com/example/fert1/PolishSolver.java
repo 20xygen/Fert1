@@ -97,6 +97,7 @@ public class PolishSolver {
     ArrayList<String> countEntryArray = new ArrayList<>();
     ArrayList<Double> countExitArray = new ArrayList<>();
     Double currentCountElement;
+
     public Double count (ArrayList<String> inputCountArray){
         countEntryArray=inputCountArray;
         //countEntryArray=solve(inputCountArray);
@@ -147,6 +148,7 @@ public class PolishSolver {
             }
             System.out.println(countEntryArray + " " + countExitArray);
         }
+        System.out.println(countExitArray.get(0));
         return countExitArray.get(0);
     }
 
