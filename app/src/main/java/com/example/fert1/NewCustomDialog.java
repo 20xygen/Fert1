@@ -19,6 +19,9 @@ public class NewCustomDialog extends Dialog implements
     public AsyncTextPathView asyncTextPathView;
     public ValuesSaver valuesSaver;
 //    public TextWriter textWriter;
+    public Boolean isCustom = false;
+    public String text;
+    public Integer position;
 
 
     public NewCustomDialog(Activity a) {
@@ -26,6 +29,20 @@ public class NewCustomDialog extends Dialog implements
         // TODO Auto-generated constructor stub
         this.activity = a;
         dialog = this;
+        isCustom = false;
+    }
+
+    public NewCustomDialog(Activity a, String text) {
+        super(a);
+        // TODO Auto-generated constructor stub
+        this.activity = a;
+        dialog = this;
+        this.text = text;
+        isCustom = true;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 
     @Override
@@ -37,7 +54,12 @@ public class NewCustomDialog extends Dialog implements
 //        textView = findViewById(R.id.textView);
         valuesSaver = new ValuesSaver(activity.getApplicationContext());
         asyncTextPathView = findViewById(R.id.animatedText);
-        asyncTextPathView.setText("- После взаи-   модействия с    Фертом вам       будет предло- жено отреаги-  ровать с помо- щью появи-       вшихся кнопок.");
+        if(isCustom){
+            asyncTextPathView.setText(text);
+        }
+        else {
+            asyncTextPathView.setText("- После взаи-   модействия с    Фертом вам       будет предло- жено отреаги-  ровать с помо- щью появи-       вшихся кнопок.");
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +68,11 @@ public class NewCustomDialog extends Dialog implements
                         "Хорошо", Toast.LENGTH_SHORT);
                 toast.show();
 
+//                System.out.println("Before: " + valuesSaver.loadInteger("LearningProgress"));
                 System.out.println("Before: " + valuesSaver.loadInteger("LearningProgress"));
-                System.out.println("Before: " + valuesSaver.loadInteger("LearningProgress"));
-                valuesSaver.save("LearningProgress", valuesSaver.loadInteger("LearningProgress")+1);
-                ValuesHolder.setLearningProgress(valuesSaver.loadInteger("LearningProgress"));
+                //valuesSaver.save("LearningProgress", valuesSaver.loadInteger("LearningProgress")+1);
+                HelpOperator.setCreated(activity.getApplicationContext(), position);
+//                ValuesHolder.setLearningProgress(valuesSaver.loadInteger("LearningProgress"));
                 System.out.println("After: " + valuesSaver.loadInteger("LearningProgress"));
                 dismiss();
             }
@@ -81,12 +104,12 @@ public class NewCustomDialog extends Dialog implements
 
     }
 
-    public void buttonClicked(View view){
-        Toast toast = Toast.makeText(activity.getApplicationContext(),
-                "buttonClicked", Toast.LENGTH_SHORT);
-        toast.show();
-        dismiss();
-    }
+//    public void buttonClicked(View view){
+//        Toast toast = Toast.makeText(activity.getApplicationContext(),
+//                "buttonClicked", Toast.LENGTH_SHORT);
+//        toast.show();
+//        dismiss();
+//    }
 
     @Override
     public void dismiss(){

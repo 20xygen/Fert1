@@ -222,11 +222,12 @@ public class NumpadTaskChanger {
     }
 
     public void startNewDialog(){
-        if(valuesSaver.loadInteger("LearningProgress")==0){
-            newCustomDialog = new NewCustomDialog(activity);
-            newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            newCustomDialog.show();
-        }
+//        if(valuesSaver.loadInteger("LearningProgress")==0){
+//            newCustomDialog = new NewCustomDialog(activity);
+//            newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            newCustomDialog.show();
+//        }
+        HelpOperator.create(activity, "- После взаи-   модействия с    Фертом вам       будет предло- жено отреаги-  ровать с помо- щью появи-       вшихся кнопок.", 1);
     }
 
     Integer intRandom;

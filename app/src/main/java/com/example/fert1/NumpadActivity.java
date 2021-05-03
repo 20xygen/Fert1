@@ -50,6 +50,8 @@ public class NumpadActivity extends Activity {
         numpadTaskChanger.setContext(this);
         numpadTaskChanger.createValuesSaver();
 
+
+
         Toast toastAlready = Toast.makeText(getApplicationContext(),
                 R.string.toast_already, Toast.LENGTH_SHORT);
 

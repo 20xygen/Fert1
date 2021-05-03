@@ -11,7 +11,7 @@ public class ValuesHolder {
     public static boolean isCreated = false;
     public static ValuesSaver valuesSaver;
     public Context context;
-    public static Integer learningProgress = 0;
+    public static Integer learningProgress = 11;
     public static Integer typeOfWaiting;
 
     public static Integer getTypeOfWaiting() {

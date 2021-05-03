@@ -32,6 +32,7 @@ public class SoulActivity extends Activity {
         progressBarC = findViewById(R.id.progress_circular1);
         progressBarL = findViewById(R.id.progress_circular2);
         setProgress();
+        HelpOperator.create(this, "- Диаграммы   показывают     характер Фертаи чем значениебольше, тем     чаще происхо- дит шалость     этого типа.", 2);
 
         Toast toastAlready = Toast.makeText(getApplicationContext(),
                 R.string.toast_already, Toast.LENGTH_SHORT);
