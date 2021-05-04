@@ -53,14 +53,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottom_navigation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:itemBackground="@color/black"-->
+<!--            app:itemIconTint="@color/bottom_navigation_item_background_colors"-->
+<!--            app:itemTextColor="@color/bottom_navigation_item_background_colors"-->
+<!--            app:menu="@menu/menu_bottom_navigation" />-->
+
+        <com.example.fert1.CustomBottom
+            android:id="@+id/bottom_in_numpad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemBackground="@color/black"
-            app:itemIconTint="@color/bottom_navigation_item_background_colors"
-            app:itemTextColor="@color/bottom_navigation_item_background_colors"
-            app:menu="@menu/menu_bottom_navigation" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

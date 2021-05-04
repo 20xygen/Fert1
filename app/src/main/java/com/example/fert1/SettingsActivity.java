@@ -1,16 +1,11 @@
 package com.example.fert1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends Activity {
 
@@ -19,6 +14,7 @@ public class SettingsActivity extends Activity {
     Parameter parameter3;
     Parameter parameter4;
     ValuesHolder valuesHolder;
+    CustomBottom customBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +30,8 @@ public class SettingsActivity extends Activity {
         valuesHolder.setContext(this);
         valuesHolder.createValuesSaver();
         valuesHolder.loadAll();
+        customBottom = findViewById(R.id.bottom_in_settings);
+        customBottom.setSelected(3);
 
         parameter1.setParameterName("Имя");
         parameter2.setParameterName("Высота плитки");
@@ -61,50 +59,68 @@ public class SettingsActivity extends Activity {
         parameter4.setMax(70);
 
         Toast toastAlready = Toast.makeText(getApplicationContext(),
-                R.string.toast_already, Toast.LENGTH_SHORT);
+                "Настройки сохранены", Toast.LENGTH_SHORT);
 
         Intent intentCalc = new Intent(SettingsActivity.this, NumpadActivity.class);
         Intent intentSoul = new Intent(SettingsActivity.this, SoulActivity.class);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        findViewById(R.id.soul_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                updateValues();
+                startActivity(intentSoul);
+            }});
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.soul_menu:
-//                                ValuesHolder.setName(parameter1.getParameterValue());
-//                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-//                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-//                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-//                                ValuesHolder.makeUpdated();
-                                updateValues();
-                                startActivity(intentSoul);
-                                break;
-                            case R.id.calc_menu:
-//                                ValuesHolder.makeUpdated();
-//                                ValuesHolder.setName(parameter1.getParameterValue());
-//                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-//                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-//                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-                                updateValues();
-                                startActivity(intentCalc);
-                                break;
-                            case R.id.settings_menu:
-//                                ValuesHolder.makeUpdated();
-//                                ValuesHolder.setName(parameter1.getParameterValue());
-//                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-//                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-//                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-                                updateValues();
-                                toastAlready.show();
-                                break;
-                        }
-                        return false;
-                    }
-                });
+        findViewById(R.id.numpad_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                updateValues();
+                startActivity(intentCalc);
+            }});
+
+        findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                updateValues();
+                toastAlready.show();
+            }});
+
+//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+//                findViewById(R.id.bottom_navigation);
+
+//        bottomNavigationView.setOnNavigationItemSelectedListener(
+//                new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                    @Override
+//                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                        switch (item.getItemId()) {
+//                            case R.id.soul_menu:
+////                                ValuesHolder.setName(parameter1.getParameterValue());
+////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
+////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
+////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
+////                                ValuesHolder.makeUpdated();
+//                                updateValues();
+//                                startActivity(intentSoul);
+//                                break;
+//                            case R.id.calc_menu:
+////                                ValuesHolder.makeUpdated();
+////                                ValuesHolder.setName(parameter1.getParameterValue());
+////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
+////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
+////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
+//                                updateValues();
+//                                startActivity(intentCalc);
+//                                break;
+//                            case R.id.settings_menu:
+////                                ValuesHolder.makeUpdated();
+////                                ValuesHolder.setName(parameter1.getParameterValue());
+////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
+////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
+////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
+//                                updateValues();
+//                                toastAlready.show();
+//                                break;
+//                        }
+//                        return false;
+//                    }
+//                });
     }
 
     public void updateValues(){

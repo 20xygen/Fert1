@@ -1,24 +1,15 @@
 package com.example.fert1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class NumpadActivity extends Activity {
 
@@ -28,6 +19,7 @@ public class NumpadActivity extends Activity {
     NumpadMain numpadMain;
     ImageButton num17, num20;
     NewCustomDialog newCustomDialog;
+    CustomBottom customBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,40 +41,55 @@ public class NumpadActivity extends Activity {
         setTextSize(ValuesHolder.getTextSize());
         numpadTaskChanger.setContext(this);
         numpadTaskChanger.createValuesSaver();
-
-
-
-        Toast toastAlready = Toast.makeText(getApplicationContext(),
-                R.string.toast_already, Toast.LENGTH_SHORT);
+        customBottom = findViewById(R.id.bottom_in_numpad);
+        customBottom.setSelected(2);
 
         Intent intentSoul = new Intent(NumpadActivity.this, SoulActivity.class);
         Intent intentSettings = new Intent(NumpadActivity.this, SettingsActivity.class);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.soul_menu:
-//                                bottomNavigationView.setSelectedItemId(R.id.soul_menu);
-                                startActivity(intentSoul);
-                                break;
-                            case R.id.calc_menu:
-//                                bottomNavigationView.setSelectedItemId(R.id.calc_menu);
-//                                toastAlready.show();
-                                numpadTaskChanger.clearTaskArray();
-                                break;
-                            case R.id.settings_menu:
-//                                bottomNavigationView.setSelectedItemId(R.id.settings_menu);
-                                startActivity(intentSettings);
-                                break;
-                        }
-                        return false;
-                    }
-                });
+        findViewById(R.id.soul_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startActivity(intentSoul);
+            }});
+
+        findViewById(R.id.numpad_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                numpadTaskChanger.clearTaskArray();
+            }});
+
+        findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startActivity(intentSettings);
+            }});
+
+        Toast toastAlready = Toast.makeText(getApplicationContext(),
+                R.string.toast_already, Toast.LENGTH_SHORT);
+//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+//                findViewById(R.id.bottom_navigation);
+
+//        bottomNavigationView.setOnNavigationItemSelectedListener(
+//                new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                    @Override
+//                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                        switch (item.getItemId()) {
+//                            case R.id.soul_menu:
+////                                bottomNavigationView.setSelectedItemId(R.id.soul_menu);
+//                                startActivity(intentSoul);
+//                                break;
+//                            case R.id.calc_menu:
+////                                bottomNavigationView.setSelectedItemId(R.id.calc_menu);
+////                                toastAlready.show();
+//                                numpadTaskChanger.clearTaskArray();
+//                                break;
+//                            case R.id.settings_menu:
+////                                bottomNavigationView.setSelectedItemId(R.id.settings_menu);
+//                                startActivity(intentSettings);
+//                                break;
+//                        }
+//                        return false;
+//                    }
+//                });
 
         findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("("); }});
