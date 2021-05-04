@@ -20,6 +20,7 @@ public class NumpadActivity extends Activity {
     ImageButton num17, num20;
     NewCustomDialog newCustomDialog;
     CustomBottom customBottom;
+    NewCustomDialog newCustomDialogSettings, getNewCustomDialogSoul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,29 @@ public class NumpadActivity extends Activity {
         numpadTaskChanger.createValuesSaver();
         customBottom = findViewById(R.id.bottom_in_numpad);
         customBottom.setSelected(2);
+
+        if(new SoulHolder().checkWaiting()){
+            numpadMain.setQuestionType();
+        }
+
+//        System.out.println("Is edited by dialog in settings: " + ValuesHolder.getEditedByDialogSettings());
+//        System.out.println("Is edited by dialog in soul: " + SoulHolder.getEditedByDialogSoul());
+        if(NewCustomDialog.getTypeOfWaiting()==1){
+            System.out.println("Edited by dialog in settings");
+            newCustomDialogSettings = new NewCustomDialog(this, 1);
+            newCustomDialogSettings.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            newCustomDialogSettings.show();
+//            ValuesHolder.setEditedByDialogSettings(false);
+            NewCustomDialog.setTypeOfWaiting(0);
+        }
+        else if(NewCustomDialog.getTypeOfWaiting()==2){
+            System.out.println("Edited by dialog in soul");
+            getNewCustomDialogSoul = new NewCustomDialog(this, 2);
+            getNewCustomDialogSoul.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            getNewCustomDialogSoul.show();
+//            SoulHolder.setEditedByDialogSoul(false);
+            NewCustomDialog.setTypeOfWaiting(0);
+        }
 
         Intent intentSoul = new Intent(NumpadActivity.this, SoulActivity.class);
         Intent intentSettings = new Intent(NumpadActivity.this, SettingsActivity.class);

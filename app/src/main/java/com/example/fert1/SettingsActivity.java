@@ -15,12 +15,15 @@ public class SettingsActivity extends Activity {
     Parameter parameter4;
     ValuesHolder valuesHolder;
     CustomBottom customBottom;
+    public Activity thisActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        thisActivity = this;
 
         parameter1 = findViewById(R.id.parameter1);
         parameter2 = findViewById(R.id.parameter2);
@@ -39,6 +42,8 @@ public class SettingsActivity extends Activity {
         parameter3.setParameterName("Ширина плитки");
         //parameter3.setBroken();
         parameter4.setParameterName("Размер текста");
+
+        HelpOperator.create(this, "   - Здесь ты         можешь              изменить           настройки          приложения.", 3);
         //parameter1.setTextSize(ValuesHolder.getTextSize());
         //parameter2.setTextSize(ValuesHolder.getTextSize());
         //parameter3.setTextSize(ValuesHolder.getTextSize());
@@ -81,6 +86,17 @@ public class SettingsActivity extends Activity {
                 updateValues();
                 toastAlready.show();
             }});
+
+        findViewById(R.id.settings_button).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+//                SoulHolder.setEditedByDialogSoul(false);
+//                ValuesHolder.setEditedByDialogSettings(true);
+                NewCustomDialog.setTypeOfWaiting(1);
+                startActivity(intentCalc);
+                return false;
+            }
+        });
 
 //        BottomNavigationView bottomNavigationView = (BottomNavigationView)
 //                findViewById(R.id.bottom_navigation);

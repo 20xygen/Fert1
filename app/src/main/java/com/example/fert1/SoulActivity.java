@@ -1,17 +1,12 @@
 package com.example.fert1;
 
-import androidx.annotation.NonNull;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SoulActivity extends Activity {
 
@@ -57,6 +52,17 @@ public class SoulActivity extends Activity {
             @Override public void onClick(View v) {
                 startActivity(intentSettings);
             }});
+
+        findViewById(R.id.soul_button).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+//                ValuesHolder.setEditedByDialogSettings(false);
+//                SoulHolder.setEditedByDialogSoul(true);
+                NewCustomDialog.setTypeOfWaiting(2);
+                startActivity(intentCalc);
+                return false;
+            }
+        });
 
 //        BottomNavigationView bottomNavigationView = (BottomNavigationView)
 //                findViewById(R.id.bottom_navigation);

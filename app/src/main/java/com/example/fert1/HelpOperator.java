@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
 public class HelpOperator {
-    public static Integer length = 2;
+    public static Integer length = 3;
 //    public static Context context;
 
     public static void create(Activity a, String text, Integer type){
@@ -56,6 +56,7 @@ public class HelpOperator {
         if(currentLength<length){
             while (currentLength<length){
                 currentValue*=10;
+                currentValue++;
                 currentLength = currentValue.toString().length();
             }
         }
@@ -70,6 +71,7 @@ public class HelpOperator {
         currentValue = Integer.parseInt(currentValue.toString().substring(0, position-1) + "2"
                 + currentValue.toString().substring(position, currentValue.toString().length()));
         System.out.println(currentValue);
+        ValuesHolder.setLearningProgress(currentValue);
         valuesSaver.save("LearningProgress", currentValue);
     }
 }

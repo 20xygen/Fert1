@@ -9,6 +9,7 @@ public class SoulHolder {
     public static Integer typeOfReaction = -1;
     public static ValuesSaver valuesSaver;
     public Context context;
+    public static Boolean editedByDialogSoul = false;
 
     public void setContext(Context context){
         this.context = context;
@@ -20,6 +21,15 @@ public class SoulHolder {
 
     public SoulHolder(){
 
+    }
+
+    public static Boolean getEditedByDialogSoul() {
+        return editedByDialogSoul;
+    }
+
+    public static void setEditedByDialogSoul(Boolean editedByDialogSoul) {
+        System.out.println("Set edited by dialog in soul " + editedByDialogSoul);
+        ValuesHolder.editedByDialogSettings = editedByDialogSoul;
     }
 
     public  Integer getTypeOfReaction() {

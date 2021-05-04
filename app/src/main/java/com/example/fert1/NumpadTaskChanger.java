@@ -77,8 +77,6 @@ public class NumpadTaskChanger {
         failTimer = new FailTimer();
         randomer = new Randomer();
         soulHolder = new SoulHolder();
-
-
     }
 
     public void clearTaskArray(){
@@ -648,28 +646,34 @@ public class NumpadTaskChanger {
                 case 1:
                     if(soulHolder.getTypeOfReaction()==1){
                         System.out.println("disrespect childishness");
+                        dialog.setText(ReactionOperator.getRandomReaction());
                         soulHolder.lazinessFromChildishness(randomer.getRoughly(0.2f));
                     }
                     else if(soulHolder.getTypeOfReaction()==2){
                         System.out.println("disrespect laziness");
+                        dialog.setText(ReactionOperator.getRandomReaction());
                         soulHolder.childishnessFromLaziness(randomer.getRoughly(0.2f));
                     }
                     else if(soulHolder.getTypeOfReaction()==0){
                         System.out.println("disrespect truth");
+                        dialog.setText(ReactionOperator.getRandomReaction(false));
                         soulHolder.increase(randomer.getRoughly(0.15f));
                     }
                     break;
                 case 2:
                     if(soulHolder.getTypeOfReaction()==2){
                         System.out.println("respect laziness");
+                        dialog.setText(ReactionOperator.getRandomReaction());
                         soulHolder.lazinessFromChildishness(randomer.getRoughly(0.2f));
                     }
                     else if(soulHolder.getTypeOfReaction()==1){
                         System.out.println("respect childishness");
+                        dialog.setText(ReactionOperator.getRandomReaction());
                         soulHolder.childishnessFromLaziness(randomer.getRoughly(0.2f));
                     }
                     else if(soulHolder.getTypeOfReaction()==0){
                         System.out.println("respect truth");
+                        dialog.setText(ReactionOperator.getRandomReaction(true));
                         soulHolder.decrease(randomer.getRoughly(0.15f));
                     }
                     break;
