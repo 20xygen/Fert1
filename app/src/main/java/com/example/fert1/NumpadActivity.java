@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,8 @@ public class NumpadActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numpad);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        final Animation animMix = AnimationUtils.loadAnimation(this, R.anim.mix);
 
         task = findViewById(R.id.textView);
         numpadTaskChanger = new NumpadTaskChanger();
@@ -116,64 +120,106 @@ public class NumpadActivity extends Activity {
 //                });
 
         findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("("); }});
+            @Override public void onClick(View v) {
+                numpadTaskChanger.update("(");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update(")"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update(")");
+                v.startAnimation(animMix);
+            }});
+
 
         findViewById(R.id.imageButton3).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("."); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update(".");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton4).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("^"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("^");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton5).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("1"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("1");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton6).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("2"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("2");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton7).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("3"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("3");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton8).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("/"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("/");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton9).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("4"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("4");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton10).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("5"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("5");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton11).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("6"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("6");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton12).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("*"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("*");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton13).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("7"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("7");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton14).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("8"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("8");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton15).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("9"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("9");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton16).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("-"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("-");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton17).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(1); }});
+            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(1);
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton18).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("0"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("0");
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton19).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(2); }});
+            @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(2);
+                v.startAnimation(animMix);
+            }});
 
         findViewById(R.id.imageButton20).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { numpadTaskChanger.update("+"); }});
+            @Override public void onClick(View v) { numpadTaskChanger.update("+");
+                v.startAnimation(animMix);
+            }});
 
     }
 

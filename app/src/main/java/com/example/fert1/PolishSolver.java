@@ -148,8 +148,15 @@ public class PolishSolver {
             }
             System.out.println(countEntryArray + " " + countExitArray);
         }
-        System.out.println(countExitArray.get(0));
-        return countExitArray.get(0);
+        try {
+            System.out.println(countExitArray.get(0));
+            return countExitArray.get(0);
+        }
+        catch (Exception e){
+            System.out.println("Operation Error");
+            return 0d;
+        }
+
     }
 
     ArrayList<String> concatNumbersArray;

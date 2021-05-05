@@ -116,6 +116,18 @@ public class NumpadTaskChanger {
         return false;
     }
 
+    public Boolean hasNumber(){
+        if(taskArray.size()==0){
+            return false;
+        }
+        else {
+            for (int i = 0; i < taskArray.size(); i++) {
+                if(polishSolver.getSymbol(taskArray.get(i))==9) return true;
+            }
+            return false;
+        }
+    }
+
     boolean canUpdate;
 
     public void update(String newSymbol){
@@ -127,8 +139,36 @@ public class NumpadTaskChanger {
         System.out.println(polishSolver.getSymbol(newSymbol)>=3 && polishSolver.getSymbol(newSymbol)<=7);
         System.out.println(polishSolver.getSymbol(newSymbol)==8);
         System.out.println(polishSolver.getSymbol(newSymbol)!=8 && polishSolver.getSymbol(newSymbol)!=2);
-        if(taskArray.size()==0 && polishSolver.getSymbol(newSymbol)<9 && polishSolver.getSymbol(newSymbol)!=1){
+        if (taskArray.size()==0){
+            if(polishSolver.getSymbol(newSymbol)<9 && polishSolver.getSymbol(newSymbol)!=1){
+                System.out.println("Нельзя ставить знак пока нет числа");
+            }
+            else {
+                taskArray.add(newSymbol);
+                taskChanger.changeWithArray(taskArray);
+            }
+        }
+
+        else if(!hasNumber() && polishSolver.getSymbol(newSymbol)<9 && polishSolver.getSymbol(newSymbol)!=1){
             System.out.println("Нельзя ставить знак пока нет числа");
+        }
+        else if(polishSolver.getSymbol(taskArray.get(taskArray.size()-1))!=9 && polishSolver.getSymbol(newSymbol)<9 && polishSolver.getSymbol(newSymbol)!=1 && polishSolver.getSymbol(newSymbol)!=2){
+            if(polishSolver.getSymbol(taskArray.get(taskArray.size()-1))==2 && polishSolver.getSymbol(newSymbol)!=1 && polishSolver.getSymbol(newSymbol)!=8){
+                System.out.println("Последний - скобка, всё ок");
+                taskArray.add(newSymbol);
+                taskChanger.changeWithArray(taskArray);
+            }
+            else System.out.println("Последний символ не число");
+
+        }
+        else if (polishSolver.getSymbol(newSymbol)==1){
+            if(polishSolver.getSymbol(taskArray.get(taskArray.size()-1))!=2 && polishSolver.getSymbol(taskArray.get(taskArray.size()-1))!=8 && polishSolver.getSymbol(taskArray.get(taskArray.size()-1))!=9){
+                taskArray.add(newSymbol);
+                taskChanger.changeWithArray(taskArray);
+            }
+            else {
+                System.out.println("Не могу сюда вставить скобку");
+            }
         }
         else if (polishSolver.getSymbol(newSymbol)==2){
             System.out.println(taskArray);
@@ -161,17 +201,23 @@ public class NumpadTaskChanger {
     Double updateAnswer;
 
     public void simpleUpdate(){
-        addZeros();
-        System.out.println("i am simple");
-        dialog.setText("Процент ошибки: 1%");
-        System.out.println("Передаю собирателю: " + taskArray);
-        taskArray = polishSolver.solve(taskArray);
-        System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
-        taskChanger.changeWithArray(polishSolver.count(taskArray));
-        updateAnswer=polishSolver.count(taskArray);
-        //taskArray.clear();
-        //taskArray.add(updateAnswer.toString());
-        symbolUpdate(updateAnswer);
+        try {
+            addZeros();
+            System.out.println("i am simple");
+            dialog.setText("Процент ошибки: 1%");
+            System.out.println("Передаю собирателю: " + taskArray);
+            taskArray = polishSolver.solve(taskArray);
+            System.out.println("Взял от собирателя и передаю решателю: " + taskArray);
+            taskChanger.changeWithArray(polishSolver.count(taskArray));
+            updateAnswer=polishSolver.count(taskArray);
+            //taskArray.clear();
+            //taskArray.add(updateAnswer.toString());
+            symbolUpdate(updateAnswer);
+        }
+        catch (Exception e){
+            taskArray = new ArrayList<String>();
+            task.setText("Допущена ошибка :(");
+        }
     }
 
     public Boolean hasSpecialMinuses = true;
