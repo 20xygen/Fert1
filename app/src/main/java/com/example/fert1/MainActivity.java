@@ -3,9 +3,13 @@ package com.example.fert1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -18,12 +22,14 @@ public class MainActivity extends Activity {
     ValuesHolder valuesHolder;
     ValuesSaver valuesSaver;
     TextView hello;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         editText = findViewById(R.id.editText);
         userName = String.valueOf(editText.getText());
@@ -60,6 +66,7 @@ public class MainActivity extends Activity {
     }
 
     public void switchToCalc(View view) {
+        startVibration(50);
         valuesSaver.save("IsCreated", true);
         Intent intent = new Intent(MainActivity.this, NumpadActivity.class);
         userName = String.valueOf(editText.getText());
@@ -70,5 +77,13 @@ public class MainActivity extends Activity {
             System.out.println(cut(userName));
         }
         startActivity(intent);
+    }
+
+    public void startVibration(Integer duration){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(duration);
+        }
     }
 }

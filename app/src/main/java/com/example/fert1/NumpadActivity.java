@@ -1,11 +1,15 @@
 package com.example.fert1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,12 +27,15 @@ public class NumpadActivity extends Activity {
     NewCustomDialog newCustomDialog;
     CustomBottom customBottom;
     NewCustomDialog newCustomDialogSettings, getNewCustomDialogSoul;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numpad);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
 
         final Animation animMix = AnimationUtils.loadAnimation(this, R.anim.mix);
 
@@ -74,22 +81,38 @@ public class NumpadActivity extends Activity {
 
         Intent intentSoul = new Intent(NumpadActivity.this, SoulActivity.class);
         Intent intentSettings = new Intent(NumpadActivity.this, SettingsActivity.class);
+        Intent intentEasterEgg = new Intent(NumpadActivity.this, EasterEggActivity.class);
 
 
         findViewById(R.id.soul_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(intentSoul);
+                startVibration(50);
             }});
 
         findViewById(R.id.numpad_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 numpadTaskChanger.clearTaskArray();
+                startVibration(50);
             }});
 
         findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(intentSettings);
+                startVibration(50);
             }});
+
+        findViewById(R.id.numpad_button).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startVibration(75);
+//                ValuesHolder.setEditedByDialogSettings(false);
+//                SoulHolder.setEditedByDialogSoul(true);
+                NewCustomDialog.setTypeOfWaiting(2);
+                startActivity(intentEasterEgg);
+                return false;
+            }
+        });
 
         Toast toastAlready = Toast.makeText(getApplicationContext(),
                 R.string.toast_already, Toast.LENGTH_SHORT);
@@ -123,102 +146,122 @@ public class NumpadActivity extends Activity {
             @Override public void onClick(View v) {
                 numpadTaskChanger.update("(");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update(")");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
 
         findViewById(R.id.imageButton3).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update(".");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton4).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("^");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton5).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("1");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton6).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("2");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton7).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("3");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton8).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("/");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton9).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("4");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton10).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("5");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton11).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("6");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton12).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("*");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton13).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("7");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton14).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("8");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton15).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("9");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton16).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("-");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton17).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(1);
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton18).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("0");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton19).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.specialUpdate(2);
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
         findViewById(R.id.imageButton20).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { numpadTaskChanger.update("+");
                 v.startAnimation(animMix);
+                startVibration(50);
             }});
 
     }
@@ -247,6 +290,14 @@ public class NumpadActivity extends Activity {
         task.setTextSize(integer);
         dialog.setTextSize(integer);
         System.out.println(task.getTextSize() + " " + dialog.getTextSize());
+    }
+
+    public void startVibration(Integer duration){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(duration);
+        }
     }
 
     public void addLearningLevel(){

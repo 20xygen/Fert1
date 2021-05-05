@@ -1,9 +1,13 @@
 package com.example.fert1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -14,12 +18,14 @@ public class SoulActivity extends Activity {
     ProgressBar progressBarL;
     SoulHolder soulHolder;
     CustomBottom customBottom;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soul);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         soulHolder = new SoulHolder();
         soulHolder.setContext(this);
@@ -40,22 +46,26 @@ public class SoulActivity extends Activity {
 
         findViewById(R.id.soul_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 toastAlready.show();
             }});
 
         findViewById(R.id.numpad_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 startActivity(intentCalc);
             }});
 
         findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 startActivity(intentSettings);
             }});
 
         findViewById(R.id.soul_button).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                startVibration(75);
 //                ValuesHolder.setEditedByDialogSettings(false);
 //                SoulHolder.setEditedByDialogSoul(true);
                 NewCustomDialog.setTypeOfWaiting(2);
@@ -90,5 +100,13 @@ public class SoulActivity extends Activity {
     public void setProgress(){
         progressBarC.setProgress((int) (soulHolder.getChildishness()*50));
         progressBarL.setProgress((int) (soulHolder.getLaziness()*50));
+    }
+
+    public void startVibration(Integer duration){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(duration);
+        }
     }
 }

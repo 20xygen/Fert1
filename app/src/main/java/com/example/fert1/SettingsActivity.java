@@ -1,9 +1,13 @@
 package com.example.fert1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,12 +20,14 @@ public class SettingsActivity extends Activity {
     ValuesHolder valuesHolder;
     CustomBottom customBottom;
     public Activity thisActivity;
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         thisActivity = this;
 
@@ -71,18 +77,21 @@ public class SettingsActivity extends Activity {
 
         findViewById(R.id.soul_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 updateValues();
                 startActivity(intentSoul);
             }});
 
         findViewById(R.id.numpad_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 updateValues();
                 startActivity(intentCalc);
             }});
 
         findViewById(R.id.settings_button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startVibration(50);
                 updateValues();
                 toastAlready.show();
             }});
@@ -90,6 +99,7 @@ public class SettingsActivity extends Activity {
         findViewById(R.id.settings_button).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                startVibration(75);
 //                SoulHolder.setEditedByDialogSoul(false);
 //                ValuesHolder.setEditedByDialogSettings(true);
                 NewCustomDialog.setTypeOfWaiting(1);
@@ -178,5 +188,13 @@ public class SettingsActivity extends Activity {
             return 3;
         }
         return 2;
+    }
+
+    public void startVibration(Integer duration){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(duration);
+        }
     }
 }
