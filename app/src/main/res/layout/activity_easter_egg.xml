@@ -97,7 +97,7 @@
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="15"
-        android:text="Разработчик: \nБарилов Денис \nСенсей: \nМихаил Портнов \nСпортблогер:\nИгорь Войтенко"
+        android:text="Разработчик: \nДенис Барилов \nСенсей: \nМихаил Портнов \nСпортблогер:\nИгорь Войтенко"
         android:textColor="#ffffff"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -28,7 +28,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:textSize="30dp"
+            android:textSize="28sp"
             android:text="Приветствую тебя, мой новый друг. Меня зовут Ферт. Я - калькулятор с характером, также как обычные люди, я могу делать ошибки, и их количество напрямую зависит от уровня наших взаимоотношений. Теперь, поведуй и ты мне своё имя: "
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintBottom_toBottomOf="parent"
