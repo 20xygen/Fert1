@@ -1,19 +1,18 @@
-package com.example.fert1;
+package com.example.fert1.keeping;
 
 import android.content.Context;
 
 public class ValuesHolder {
-    public static Integer imageX = 98;
-    public static Integer imageY = 98;
-    public static String name = "User";
-    public static Integer textSize = 30;
-    public static boolean isUpdated = false;
-    public static boolean isCreated = false;
-    public static ValuesSaver valuesSaver;
-    public Context context;
-    public static Integer learningProgress = 111;
-    public static Integer typeOfWaiting;
-    public static Boolean editedByDialogSettings = false;
+    protected static Integer imageX = 98;
+    protected static Integer imageY = 98;
+    protected static String name = "User";
+    protected static Integer textSize = 30;
+    protected static boolean isUpdated = false;
+    protected static boolean isCreated = false;
+    protected static ValuesSaver valuesSaver;
+    protected Context context;
+    protected static Integer learningProgress = 111;
+    protected static Integer typeOfWaiting;
 
     public static Integer getTypeOfWaiting() {
         return typeOfWaiting;
@@ -33,15 +32,6 @@ public class ValuesHolder {
 
     public ValuesHolder(){
 
-    }
-
-    public static Boolean getEditedByDialogSettings() {
-        return editedByDialogSettings;
-    }
-
-    public static void setEditedByDialogSettings(Boolean editedByDialogSettings) {
-        System.out.println("Set edited by dialog in settings " + editedByDialogSettings);
-        ValuesHolder.editedByDialogSettings = editedByDialogSettings;
     }
 
     public static void setIsUpdated(boolean isUpdated) {
@@ -74,12 +64,6 @@ public class ValuesHolder {
     public static boolean getCreateStatus(){return isCreated; }
 
     public static void makeUpdated(){isUpdated=true;}
-
-    public static void makeCreated(){isCreated=true;}
-
-    public static void makeNotUpdated(){isUpdated=false;}
-
-    public static void makeNotCreated(){isCreated=false;}
 
     public static Integer getImageX() {
         return imageX;

@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.screen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,14 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.fert1.R;
+import com.example.fert1.keeping.ValuesHolder;
+import com.example.fert1.custom.CustomBottom;
+import com.example.fert1.custom.Parameter;
+import com.example.fert1.dialog.HelpOperator;
+import com.example.fert1.dialog.NewCustomDialog;
+import com.example.fert1.numpad.NumpadActivity;
 
 public class SettingsActivity extends Activity {
 
@@ -50,12 +58,6 @@ public class SettingsActivity extends Activity {
         parameter4.setParameterName("Размер текста");
 
         HelpOperator.create(this, "   - Здесь ты         можешь              изменить           настройки          приложения.", 3);
-        //parameter1.setTextSize(ValuesHolder.getTextSize());
-        //parameter2.setTextSize(ValuesHolder.getTextSize());
-        //parameter3.setTextSize(ValuesHolder.getTextSize());
-        //parameter4.setTextSize(ValuesHolder.getTextSize());
-        //parameter4.setBroken();
-
 
         parameter1.setParameterValue(ValuesHolder.getName());
         parameter2.setParameterValue(ValuesHolder.getImageY());
@@ -100,53 +102,11 @@ public class SettingsActivity extends Activity {
             @Override
             public boolean onLongClick(View v) {
                 startVibration(75);
-//                SoulHolder.setEditedByDialogSoul(false);
-//                ValuesHolder.setEditedByDialogSettings(true);
                 NewCustomDialog.setTypeOfWaiting(1);
                 startActivity(intentCalc);
                 return false;
             }
         });
-
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-//                findViewById(R.id.bottom_navigation);
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(
-//                new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                    @Override
-//                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.soul_menu:
-////                                ValuesHolder.setName(parameter1.getParameterValue());
-////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-////                                ValuesHolder.makeUpdated();
-//                                updateValues();
-//                                startActivity(intentSoul);
-//                                break;
-//                            case R.id.calc_menu:
-////                                ValuesHolder.makeUpdated();
-////                                ValuesHolder.setName(parameter1.getParameterValue());
-////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-//                                updateValues();
-//                                startActivity(intentCalc);
-//                                break;
-//                            case R.id.settings_menu:
-////                                ValuesHolder.makeUpdated();
-////                                ValuesHolder.setName(parameter1.getParameterValue());
-////                                ValuesHolder.setImageY(Integer.parseInt(parameter2.getParameterValue()));
-////                                ValuesHolder.setImageX(Integer.parseInt(parameter3.getParameterValue()));
-////                                ValuesHolder.setTextSize(Integer.parseInt(parameter4.getParameterValue()));
-//                                updateValues();
-//                                toastAlready.show();
-//                                break;
-//                        }
-//                        return false;
-//                    }
-//                });
     }
 
     public void updateValues(){
@@ -178,16 +138,6 @@ public class SettingsActivity extends Activity {
             textY = 150 - numPadY;
             setY(numPadY, textY);
         }
-    }
-
-    public Integer returningTextSize(Float number){
-        if(number<1.5){
-            return 1;
-        }
-        if(number>2.5){
-            return 3;
-        }
-        return 2;
     }
 
     public void startVibration(Integer duration){

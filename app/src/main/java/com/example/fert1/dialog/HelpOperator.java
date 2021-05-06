@@ -1,13 +1,15 @@
-package com.example.fert1;
+package com.example.fert1.dialog;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
+import com.example.fert1.keeping.ValuesHolder;
+import com.example.fert1.keeping.ValuesSaver;
+
 public class HelpOperator {
-    public static Integer length = 3;
-//    public static Context context;
+    protected static Integer length = 3;
 
     public static void create(Activity a, String text, Integer type){
         if(!getStatus(a.getApplicationContext(), type)){
@@ -16,7 +18,6 @@ public class HelpOperator {
             newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             newCustomDialog.setPosition(type);
             newCustomDialog.show();
-//            setCreated(a.getApplicationContext(), type);
         }
         else System.out.println("HelpOperator: It is already shown");
 
@@ -25,7 +26,6 @@ public class HelpOperator {
     public static Boolean getStatus(Context inContext, Integer position){
         ValuesSaver valuesSaver = new ValuesSaver(inContext);
         Integer currentLength = 0;
-//        Integer current = 1;
         Integer currentValue = valuesSaver.loadInteger("LearningProgress");
         System.out.println(currentValue);
         currentLength = currentValue.toString().length();
@@ -50,7 +50,6 @@ public class HelpOperator {
     public static void setCreated(Context inContext, Integer position){
         ValuesSaver valuesSaver = new ValuesSaver(inContext);
         Integer currentLength = 0;
-//        Integer current = 1;
         Integer currentValue = valuesSaver.loadInteger("LearningProgress");
         currentLength = currentValue.toString().length();
         if(currentLength<length){

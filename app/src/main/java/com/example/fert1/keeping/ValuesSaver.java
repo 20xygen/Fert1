@@ -1,40 +1,33 @@
-package com.example.fert1;
+package com.example.fert1.keeping;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.fert1.keeping.SoulHolder;
+import com.example.fert1.keeping.ValuesHolder;
+
 public class ValuesSaver {
     public static final String APP_PREFERENCES = "mySettings";
 
-    public static final String APP_PREFERENCES_NAME = "Name";
-    public static final String APP_PREFERENCES_IMAGEX = "ImageX";
-    public static final String APP_PREFERENCES_IMAGEY = "ImageY";
-    public static final String APP_PREFERENCES_TEXTSIZE = "TextSize";
-    public static final String APP_PREFERENCES_ISUPDATED = "IsUpdated";
-    public static final String APP_PREFERENCES_ISCREATED = "IsCreated";
-    public static final String APP_PREFERENCES_CHILDISHNESS = "Childishness";
-    public static final String APP_PREFERENCES_LAZINESS = "Laziness";
-    public static final String APP_PREFERENCES_LEARNINGPROGRESS = "LearningProgress";
-    public ValuesHolder valuesHolder;
-    public SoulHolder soulHolder;
+    protected static final String APP_PREFERENCES_NAME = "Name";
+    protected static final String APP_PREFERENCES_IMAGEX = "ImageX";
+    protected static final String APP_PREFERENCES_IMAGEY = "ImageY";
+    protected static final String APP_PREFERENCES_TEXTSIZE = "TextSize";
+    protected static final String APP_PREFERENCES_ISUPDATED = "IsUpdated";
+    protected static final String APP_PREFERENCES_ISCREATED = "IsCreated";
+    protected static final String APP_PREFERENCES_CHILDISHNESS = "Childishness";
+    protected static final String APP_PREFERENCES_LAZINESS = "Laziness";
+    protected static final String APP_PREFERENCES_LEARNINGPROGRESS = "LearningProgress";
+    protected ValuesHolder valuesHolder;
+    protected SoulHolder soulHolder;
 
-    SharedPreferences mySettings;
+    protected SharedPreferences mySettings;
 
     public ValuesSaver(Context context){
         mySettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); //use default?
     }
 
     public void save(String file, String value){
-//        switch (file){
-//            case APP_PREFERENCES_NAME:
-//                SharedPreferences.Editor editor1 = mySettings.edit();
-//                editor1.putString(APP_PREFERENCES_NAME, value);
-//                editor1.apply();
-//                break;
-//            default:
-//                System.out.println("I have not this value");
-//                break;
-//        }
         SharedPreferences.Editor editor1 = mySettings.edit();
         editor1.putString(APP_PREFERENCES_NAME, value);
         editor1.apply();
@@ -283,20 +276,5 @@ public class ValuesSaver {
         }
 
         return exitBool;
-//        save(APP_PREFERENCES_IMAGEX, 98);
-//        System.out.println(APP_PREFERENCES_IMAGEY);
-//        save(APP_PREFERENCES_IMAGEY, 98);
-//        System.out.println(APP_PREFERENCES_CHILDISHNESS);
-//        save(APP_PREFERENCES_CHILDISHNESS, 1);
-//        System.out.println(APP_PREFERENCES_LAZINESS);
-//        save(APP_PREFERENCES_LAZINESS,1);
-//        System.out.println(APP_PREFERENCES_NAME);
-//        save(APP_PREFERENCES_NAME, "UserName");
-//        System.out.println(APP_PREFERENCES_TEXTSIZE);
-//        save(APP_PREFERENCES_TEXTSIZE, 30);
-//        System.out.println(APP_PREFERENCES_ISCREATED);
-//        save(APP_PREFERENCES_ISCREATED, false);
-//        System.out.println(APP_PREFERENCES_ISCREATED);
-//        save(APP_PREFERENCES_ISUPDATED, false);
     }
 }

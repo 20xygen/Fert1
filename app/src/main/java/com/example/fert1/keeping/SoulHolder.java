@@ -1,15 +1,14 @@
-package com.example.fert1;
+package com.example.fert1.keeping;
 
 import android.content.Context;
 
 public class SoulHolder {
-    public static float childishness = 1;
-    public static float laziness = 1;
-    public static boolean waitingFotReaction = false;
-    public static Integer typeOfReaction = -1;
-    public static ValuesSaver valuesSaver;
-    public Context context;
-    public static Boolean editedByDialogSoul = false;
+    protected static float childishness = 1;
+    protected static float laziness = 1;
+    protected static boolean waitingFotReaction = false;
+    protected static Integer typeOfReaction = -1;
+    protected static ValuesSaver valuesSaver;
+    protected Context context;
 
     public void setContext(Context context){
         this.context = context;
@@ -21,15 +20,6 @@ public class SoulHolder {
 
     public SoulHolder(){
 
-    }
-
-    public static Boolean getEditedByDialogSoul() {
-        return editedByDialogSoul;
-    }
-
-    public static void setEditedByDialogSoul(Boolean editedByDialogSoul) {
-        System.out.println("Set edited by dialog in soul " + editedByDialogSoul);
-        ValuesHolder.editedByDialogSettings = editedByDialogSoul;
     }
 
     public  Integer getTypeOfReaction() {

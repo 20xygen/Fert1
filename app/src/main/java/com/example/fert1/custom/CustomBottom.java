@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,10 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.fert1.R;
+
 public class CustomBottom extends ConstraintLayout {
 
-    public ImageButton soulButton, numpadButton, settingsButton;
-    public TextView soulText, numpadText, settingsText;
+    protected ImageButton soulButton, numpadButton, settingsButton;
+    protected TextView soulText, numpadText, settingsText;
 
     public CustomBottom(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

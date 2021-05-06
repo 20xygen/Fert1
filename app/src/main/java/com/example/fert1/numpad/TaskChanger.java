@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.numpad;
 
 import android.util.Log;
 import android.widget.TextView;
@@ -6,10 +6,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class TaskChanger {
-    TextView task;
-    String taskString;
-    ArrayList<String> taskChangerArray = new ArrayList<>();
-    static boolean isFirst = true;
+    protected TextView task;
+    protected String taskString;
+    protected ArrayList<String> taskChangerArray = new ArrayList<>();
+    protected static boolean isFirst = true;
 
     private static final String TAG = "TaskChanger";
 
@@ -18,20 +18,7 @@ public class TaskChanger {
         this.task = task;
     }
 
-    public void change(String newText) {
-        Log.w(TAG, "Активирован метод change класса TaskChanger с String аргументом");
-        taskString = (String) task.getText();
-        if (isFirst || taskString.substring(0,1).equals("=")) {
-            taskString = newText;
-            task.setText(taskString);
-            isFirst = false;
-        } else {
-            taskString = taskString + newText;
-            task.setText(taskString);
-        }
-    }
-
-    String changeWithArrayString = "";
+    protected String changeWithArrayString = "";
 
     public void changeWithArray(ArrayList<String> inputChangeArray){
         taskChangerArray = inputChangeArray;
@@ -48,8 +35,7 @@ public class TaskChanger {
         task.setText(string);
     }
 
-    Double answer;
-    Integer intAnswer;
+    protected Integer intAnswer;
 
     public void changeWithArray(Double newValue){
         if(newValue%1==0.0) {
@@ -64,15 +50,11 @@ public class TaskChanger {
 
     public void change(int switcher) {
         Log.w(TAG, "Активирован метод change класса TaskChanger с int аргументом");
-        switch (switcher){
-            case -1:
-                taskString = (String) task.getText();
-                if (!(taskString.equals(""))){
-                    taskString = taskString.substring(0, taskString.length()-1);
-                }
-                break;
-            default:
-                break;
+        if (switcher == -1) {
+            taskString = (String) task.getText();
+            if (!(taskString.equals(""))) {
+                taskString = taskString.substring(0, taskString.length() - 1);
+            }
         }
         task.setText(taskString);
     }

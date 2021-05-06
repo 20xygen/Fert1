@@ -1,14 +1,14 @@
-package com.example.fert1;
+package com.example.fert1.numpad;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 
 public class NumberChanger {
-    ArrayList<String> inputArray = new ArrayList<>();
-    ArrayList<String> outputArray = new ArrayList<>();
-    String string;
-    String currentString;
+    protected ArrayList<String> inputArray = new ArrayList<>();
+    protected ArrayList<String> outputArray = new ArrayList<>();
+    protected String string;
+    protected String currentString;
     private static final String TAG = "NumberChanger";
 
     public NumberChanger(){ }

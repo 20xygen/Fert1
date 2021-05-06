@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NumpadActivity">
+    tools:context=".numpad.NumpadActivity">
 
 
     <LinearLayout
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Вычисления" />
 
-        <com.example.fert1.NumpadMain
+        <com.example.fert1.numpad.NumpadMain
             android:id="@+id/my_numpad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -62,7 +62,7 @@
 <!--            app:itemTextColor="@color/bottom_navigation_item_background_colors"-->
 <!--            app:menu="@menu/menu_bottom_navigation" />-->
 
-        <com.example.fert1.CustomBottom
+        <com.example.fert1.custom.CustomBottom
             android:id="@+id/bottom_in_numpad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

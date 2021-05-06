@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SoulActivity">
+    tools:context=".screen.SoulActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,7 +119,7 @@
         <!--            app:itemTextColor="@color/bottom_navigation_item_background_colors"-->
         <!--            app:menu="@menu/menu_bottom_navigation" />-->
 
-        <com.example.fert1.CustomBottom
+        <com.example.fert1.custom.CustomBottom
             android:id="@+id/bottom_in_soul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

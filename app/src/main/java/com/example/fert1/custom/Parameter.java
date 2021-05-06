@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.custom;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.fert1.R;
+
 public class Parameter extends LinearLayout {
 
-    EditText editText;
-    TextView textView;
+    protected EditText editText;
+    protected TextView textView;
+
     public Parameter(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         inflateParameter(context);

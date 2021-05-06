@@ -7,18 +7,18 @@ import java.util.Locale;
 
 public class FailTimer {
     // Текущее время
-    Date currentDate = new Date();
-    DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-    String timeText = timeFormat.format(currentDate);
+    protected Date currentDate = new Date();
+    protected DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+    protected String timeText = timeFormat.format(currentDate);
 
-    String timeRegex = ":";
+    protected String timeRegex = ":";
 
-    static Integer startTime = 0;
-    static Integer endTime = 0;
-    static Integer difference;
-    static Integer currentTime;
-    static Integer waitFor;
-    static  boolean isWaiting = false;
+    protected static Integer startTime = 0;
+    protected static Integer endTime = 0;
+    protected static Integer difference;
+    protected static Integer currentTime;
+    protected static Integer waitFor;
+    protected static  boolean isWaiting = false;
 
 
     public Integer timeToInteger(String string){

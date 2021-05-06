@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.screen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,13 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.fert1.R;
+import com.example.fert1.keeping.SoulHolder;
+import com.example.fert1.custom.CustomBottom;
+import com.example.fert1.dialog.HelpOperator;
+import com.example.fert1.dialog.NewCustomDialog;
+import com.example.fert1.numpad.NumpadActivity;
 
 public class SoulActivity extends Activity {
 
@@ -73,28 +80,6 @@ public class SoulActivity extends Activity {
                 return false;
             }
         });
-
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-//                findViewById(R.id.bottom_navigation);
-//
-//        bottomNavigationView.setOnNavigationItemSelectedListener(
-//                new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                    @Override
-//                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.soul_menu:
-//                                toastAlready.show();
-//                                break;
-//                            case R.id.calc_menu:
-//                                startActivity(intentCalc);
-//                                break;
-//                            case R.id.settings_menu:
-//                                startActivity(intentSettings);
-//                                break;
-//                        }
-//                        return false;
-//                    }
-//                });
     }
 
     public void setProgress(){

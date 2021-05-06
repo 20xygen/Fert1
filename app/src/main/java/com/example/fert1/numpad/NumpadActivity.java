@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.numpad;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,17 +17,26 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fert1.R;
+import com.example.fert1.screen.SettingsActivity;
+import com.example.fert1.screen.SoulActivity;
+import com.example.fert1.keeping.SoulHolder;
+import com.example.fert1.keeping.ValuesHolder;
+import com.example.fert1.custom.CustomBottom;
+import com.example.fert1.dialog.NewCustomDialog;
+import com.example.fert1.screen.EasterEggActivity;
+
 public class NumpadActivity extends Activity {
 
-    TextView task;
-    TextView dialog;
-    NumpadTaskChanger numpadTaskChanger;
-    NumpadMain numpadMain;
-    ImageButton num17, num20;
-    NewCustomDialog newCustomDialog;
-    CustomBottom customBottom;
-    NewCustomDialog newCustomDialogSettings, getNewCustomDialogSoul;
-    Vibrator vibrator;
+    protected TextView task;
+    protected TextView dialog;
+    protected NumpadTaskChanger numpadTaskChanger;
+    protected NumpadMain numpadMain;
+    protected ImageButton num17, num20;
+    protected NewCustomDialog newCustomDialog;
+    protected CustomBottom customBottom;
+    protected NewCustomDialog newCustomDialogSettings, getNewCustomDialogSoul;
+    protected Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +69,12 @@ public class NumpadActivity extends Activity {
             numpadMain.setQuestionType();
         }
 
-//        System.out.println("Is edited by dialog in settings: " + ValuesHolder.getEditedByDialogSettings());
-//        System.out.println("Is edited by dialog in soul: " + SoulHolder.getEditedByDialogSoul());
+
         if(NewCustomDialog.getTypeOfWaiting()==1){
             System.out.println("Edited by dialog in settings");
             newCustomDialogSettings = new NewCustomDialog(this, 1);
             newCustomDialogSettings.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             newCustomDialogSettings.show();
-//            ValuesHolder.setEditedByDialogSettings(false);
             NewCustomDialog.setTypeOfWaiting(0);
         }
         else if(NewCustomDialog.getTypeOfWaiting()==2){
@@ -75,7 +82,6 @@ public class NumpadActivity extends Activity {
             getNewCustomDialogSoul = new NewCustomDialog(this, 2);
             getNewCustomDialogSoul.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getNewCustomDialogSoul.show();
-//            SoulHolder.setEditedByDialogSoul(false);
             NewCustomDialog.setTypeOfWaiting(0);
         }
 
@@ -106,8 +112,6 @@ public class NumpadActivity extends Activity {
             @Override
             public boolean onLongClick(View v) {
                 startVibration(75);
-//                ValuesHolder.setEditedByDialogSettings(false);
-//                SoulHolder.setEditedByDialogSoul(true);
                 NewCustomDialog.setTypeOfWaiting(2);
                 startActivity(intentEasterEgg);
                 return false;
@@ -116,31 +120,6 @@ public class NumpadActivity extends Activity {
 
         Toast toastAlready = Toast.makeText(getApplicationContext(),
                 R.string.toast_already, Toast.LENGTH_SHORT);
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-//                findViewById(R.id.bottom_navigation);
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(
-//                new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                    @Override
-//                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.soul_menu:
-////                                bottomNavigationView.setSelectedItemId(R.id.soul_menu);
-//                                startActivity(intentSoul);
-//                                break;
-//                            case R.id.calc_menu:
-////                                bottomNavigationView.setSelectedItemId(R.id.calc_menu);
-////                                toastAlready.show();
-//                                numpadTaskChanger.clearTaskArray();
-//                                break;
-//                            case R.id.settings_menu:
-////                                bottomNavigationView.setSelectedItemId(R.id.settings_menu);
-//                                startActivity(intentSettings);
-//                                break;
-//                        }
-//                        return false;
-//                    }
-//                });
 
         findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -268,25 +247,6 @@ public class NumpadActivity extends Activity {
 
     public void setTextSize(Integer integer){
         System.out.println("Setting text size: size = " + integer + ", task = " + task + ", dialog = " + dialog);
-        /*
-        switch (integer){
-            case 1:
-                task.setTextSize(15);
-                dialog.setTextSize(15);
-                System.out.println(task.getTextSize() + " " + dialog.getTextSize());
-                break;
-            case 2:
-                task.setTextSize(30);
-                dialog.setTextSize(30);
-                System.out.println(task.getTextSize() + " " + dialog.getTextSize());
-                break;
-            case 3:
-                task.setTextSize(45);
-                dialog.setTextSize(45);
-                System.out.println(task.getTextSize() + " " + dialog.getTextSize());
-                break;
-        }
-         */
         task.setTextSize(integer);
         dialog.setTextSize(integer);
         System.out.println(task.getTextSize() + " " + dialog.getTextSize());
@@ -300,14 +260,4 @@ public class NumpadActivity extends Activity {
         }
     }
 
-    public void addLearningLevel(){
-        numpadTaskChanger.getValuesSaver().save("LearningProgress", numpadTaskChanger.getValuesSaver().loadInteger("LearningProgress")+1);
-        ValuesHolder.setLearningProgress(numpadTaskChanger.getValuesSaver().loadInteger("LearningProgress"));
-    }
-
-    public void startDialog(){
-        newCustomDialog = new NewCustomDialog(this);
-        newCustomDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        newCustomDialog.show();
-    }
 }

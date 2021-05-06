@@ -1,6 +1,4 @@
-package com.example.fert1;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.fert1.screen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +12,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.fert1.numpad.NumpadActivity;
+import com.example.fert1.R;
+import com.example.fert1.keeping.ValuesHolder;
+import com.example.fert1.keeping.ValuesSaver;
 
 public class MainActivity extends Activity {
 
@@ -39,14 +42,6 @@ public class MainActivity extends Activity {
         valuesHolder.setContext(this);
         valuesHolder.createValuesSaver();
         valuesSaver = new ValuesSaver(this);
-//        System.out.println(valuesSaver);
-//        if(!valuesSaver.loadBoolean("IsCreated")){
-//            System.out.println("Already created");
-//            valuesSaver.saveDefault();
-//        }
-//        valuesHolder.loadAll();
-//        System.out.println("------------");
-//        System.out.println(ValuesHolder.getImageX());
         if(valuesSaver.saveDefault()){
             editText.setVisibility(View.INVISIBLE);
             hello.setText("Приветствую тебя, " + valuesSaver.loadString("Name") + "!");

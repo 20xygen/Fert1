@@ -1,12 +1,12 @@
-package com.example.fert1;
+package com.example.fert1.math;
 
 import java.util.ArrayList;
 
 public class PolishSolver {
-    ArrayList<String> polishEntryArray = new ArrayList<>();
-    ArrayList<String> polishFirstArray = new ArrayList<>();
-    ArrayList<String> polishSecondArray = new ArrayList<>();
-    String currentPolishElement;
+    protected ArrayList<String> polishEntryArray = new ArrayList<>();
+    protected ArrayList<String> polishFirstArray = new ArrayList<>();
+    protected ArrayList<String> polishSecondArray = new ArrayList<>();
+    protected String currentPolishElement;
 
     public ArrayList<String> solve (ArrayList<String> inputPolishEntryArray){
         //clearAll();
@@ -94,19 +94,18 @@ public class PolishSolver {
         return polishFirstArray;
     }
 
-    ArrayList<String> countEntryArray = new ArrayList<>();
-    ArrayList<Double> countExitArray = new ArrayList<>();
-    Double currentCountElement;
+    protected ArrayList<String> countEntryArray = new ArrayList<>();
+    protected ArrayList<Double> countExitArray = new ArrayList<>();
+    protected Double currentCountElement;
 
     public Double count (ArrayList<String> inputCountArray){
         countEntryArray=inputCountArray;
-        //countEntryArray=solve(inputCountArray);
         countExitArray.clear();
         for (int i = 0; i < countEntryArray.size(); i++) {
             if (getSymbol(countEntryArray.get(i))==9){
                 countExitArray.add(Double.parseDouble(countEntryArray.get(i)));
             }
-            else/* if(getSymbol(countEntryArray.get(i))>=3 && getSymbol(countEntryArray.get(i))<=7)*/{
+            else{
                 if(countExitArray.size()>=2){
                     switch (getSymbol(countEntryArray.get(i))){
                         case 3:
@@ -159,13 +158,11 @@ public class PolishSolver {
 
     }
 
-    ArrayList<String> concatNumbersArray;
-    //ArrayList<String> concatNumbersExitArray;
-    Integer lastSize;
+    protected ArrayList<String> concatNumbersArray;
+    protected Integer lastSize;
 
     public ArrayList<String> concatNumbers(ArrayList<String> inputConcatNumbers){
         concatNumbersArray = inputConcatNumbers;
-        //concatNumbersExitArray = new ArrayList<>();
         lastSize = -1;
         while (lastSize!=concatNumbersArray.size()){
             lastSize=concatNumbersArray.size();
@@ -183,22 +180,11 @@ public class PolishSolver {
         return concatNumbersArray;
     }
 
-    public boolean hasElement (ArrayList<String> inputHasElementArray, String element) {
-        for (int i = 0; i < inputHasElementArray.size(); i++) {
-            if (inputHasElementArray.get(i).equals(element)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    String isNumberString;
+    protected String isNumberString;
 
     public boolean isNumber (String input){
         isNumberString = input;
-        //добавсь сюда запятую
         for (int i = 0; i < input.length(); i++) {
-            //isNumArray.add(input.substring(i, i+1));
             if(!(isNumberString.substring(i,i+1).equals("0") || isNumberString.substring(i,i+1).equals("1")
                     || isNumberString.substring(i,i+1).equals("2") || isNumberString.substring(i,i+1).equals("3")
                     || isNumberString.substring(i,i+1).equals("4") || isNumberString.substring(i,i+1).equals("5")
@@ -213,7 +199,7 @@ public class PolishSolver {
         return true;
     }
 
-    Integer getPriorityNumber;
+    protected Integer getPriorityNumber;
 
     public Integer getPriority(String string){
         getPriorityNumber=getSymbol(string);
@@ -268,17 +254,5 @@ public class PolishSolver {
         System.out.println("polishFirstArray " + polishFirstArray);
         System.out.println("polishSecondArray " + polishSecondArray);
         System.out.println("currentPolishElement " + currentPolishElement);
-    }
-
-    public void clearAll(){
-        getPriorityNumber = 0;
-        isNumberString = "";
-        countEntryArray.clear();
-        countExitArray.clear();
-        currentCountElement = 0.0;
-        polishEntryArray.clear();
-        polishFirstArray.clear();
-        polishSecondArray.clear();
-        currentPolishElement = "";
     }
 }

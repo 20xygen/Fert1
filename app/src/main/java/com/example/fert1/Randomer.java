@@ -1,11 +1,13 @@
 package com.example.fert1;
 
-public class Randomer {
-    public Integer minRandom = 0;
-    public Integer maxRandom = 100;
-    public SoulHolder soulHolder;
+import com.example.fert1.keeping.SoulHolder;
 
-    public boolean eventIsGoing = false;
+public class Randomer {
+    protected Integer minRandom = 0;
+    protected Integer maxRandom = 100;
+    protected SoulHolder soulHolder;
+
+    protected boolean eventIsGoing = false;
 
     public void startEvent(){eventIsGoing=true;}
 
@@ -39,7 +41,7 @@ public class Randomer {
         return (minRandom + (int) (Math.random() * maxRandom)) * coefficient > percent;
     }
 
-    float randomFloat;
+    protected float randomFloat;
 
     public boolean doOrNot(){
         System.out.println("doing new random");
@@ -54,7 +56,7 @@ public class Randomer {
         return 1 + (int) (Math.random() * (quantity));
     }
 
-    Double randomCOL;
+    protected Double randomCOL;
 
     public Integer childOrLazy(Float childishnessCoefficient, Float lazinessCoefficient){
         randomCOL = Math.random() * (childishnessCoefficient + lazinessCoefficient);

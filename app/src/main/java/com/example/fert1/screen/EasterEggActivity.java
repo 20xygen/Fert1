@@ -1,6 +1,4 @@
-package com.example.fert1;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.fert1.screen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +10,10 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.fert1.dialog.NewCustomDialog;
+import com.example.fert1.numpad.NumpadActivity;
+import com.example.fert1.R;
 
 public class EasterEggActivity extends Activity {
     Vibrator vibrator;

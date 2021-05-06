@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".screen.SettingsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,22 +14,22 @@
         tools:layout_editor_absoluteX="223dp"
         tools:layout_editor_absoluteY="379dp">
 
-        <com.example.fert1.Parameter
+        <com.example.fert1.custom.Parameter
             android:id="@+id/parameter1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <com.example.fert1.Parameter
+        <com.example.fert1.custom.Parameter
             android:id="@+id/parameter2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <com.example.fert1.Parameter
+        <com.example.fert1.custom.Parameter
             android:id="@+id/parameter3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <com.example.fert1.Parameter
+        <com.example.fert1.custom.Parameter
             android:id="@+id/parameter4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -51,7 +51,7 @@
         <!--            app:itemTextColor="@color/bottom_navigation_item_background_colors"-->
         <!--            app:menu="@menu/menu_bottom_navigation" />-->
 
-        <com.example.fert1.CustomBottom
+        <com.example.fert1.custom.CustomBottom
             android:id="@+id/bottom_in_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

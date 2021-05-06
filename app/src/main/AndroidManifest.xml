@@ -11,18 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fert1">
-        <activity android:name=".EasterEggActivity"></activity>
-        <activity android:name=".NumpadActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".SoulActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".screen.EasterEggActivity"></activity>
+        <activity android:name=".numpad.NumpadActivity" />
+        <activity android:name=".screen.SettingsActivity" />
+        <activity android:name=".screen.SoulActivity" />
+        <activity android:name=".screen.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainCalc" />
     </application>
 
 </manifest>

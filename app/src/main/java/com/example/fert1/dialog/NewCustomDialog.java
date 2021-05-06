@@ -1,4 +1,4 @@
-package com.example.fert1;
+package com.example.fert1.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -8,24 +8,27 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.fert1.R;
+import com.example.fert1.keeping.SoulHolder;
+import com.example.fert1.keeping.ValuesHolder;
+import com.example.fert1.keeping.ValuesSaver;
+
 import yanzhikai.textpath.AsyncTextPathView;
 
 public class NewCustomDialog extends Dialog implements
         View.OnClickListener {
-    public Activity activity;
-    public Dialog dialog;
-    public Button button;
-//    public TextView textView;
-    public AsyncTextPathView asyncTextPathView;
-    public ValuesSaver valuesSaver;
-//    public TextWriter textWriter;
-    public Boolean isCustom = false;
-    public String text;
-    public Integer position;
-    public Integer type;
-    public Button buttonAgree, buttonDisagree;
+    protected Activity activity;
+    protected Dialog dialog;
+    protected Button button;
+    protected AsyncTextPathView asyncTextPathView;
+    protected ValuesSaver valuesSaver;
+    protected Boolean isCustom = false;
+    protected String text;
+    protected Integer position;
+    protected Integer type;
+    protected Button buttonAgree, buttonDisagree;
     SoulHolder soulHolder;
-    public static Integer typeOfWaiting = 0;
+    protected static Integer typeOfWaiting = 0;
 
     public static Integer getTypeOfWaiting() {
         return typeOfWaiting;
@@ -81,13 +84,10 @@ public class NewCustomDialog extends Dialog implements
                 public void onClick(View v) {
                     Toast toast = Toast.makeText(activity.getApplicationContext(),
                             "Хорошо", Toast.LENGTH_SHORT);
-                    //toast.show();
 
-//                System.out.println("Before: " + valuesSaver.loadInteger("LearningProgress"));
                     System.out.println("Before: " + valuesSaver.loadInteger("LearningProgress"));
                     //valuesSaver.save("LearningProgress", valuesSaver.loadInteger("LearningProgress")+1);
                     HelpOperator.setCreated(activity.getApplicationContext(), position);
-//                ValuesHolder.setLearningProgress(valuesSaver.loadInteger("LearningProgress"));
                     System.out.println("After: " + valuesSaver.loadInteger("LearningProgress"));
                     dismiss();
 
@@ -106,13 +106,11 @@ public class NewCustomDialog extends Dialog implements
                             ValuesHolder.setTextSize(30);
                             ValuesHolder.setImageX(98);
                             ValuesHolder.setImageY(98);
-//                            ValuesHolder.setEditedByDialog(true);
                             valuesSaver.save("TextSize", 30);
                             valuesSaver.save("ImageX", 98);
                             valuesSaver.save("ImageY", 98);
                             break;
                         case 2:
-//                            SoulHolder.setEditedByDialog(true);
                             soulHolder.setChildishness(1f);
                             soulHolder.setLaziness(1f);
                             valuesSaver.save("Laziness", 1f);
@@ -134,7 +132,6 @@ public class NewCustomDialog extends Dialog implements
             });
         }
 
-//        textView = findViewById(R.id.textView);
         valuesSaver = new ValuesSaver(activity.getApplicationContext());
         asyncTextPathView = findViewById(R.id.animatedText);
         if(isCustom){
@@ -152,41 +149,7 @@ public class NewCustomDialog extends Dialog implements
                     asyncTextPathView.setText("- Вы уверены,   что хотите вос-становить на-   чальный хара- ктер Ферта?");
             }
         }
-
-
-        
-//        textWriter = findViewById(R.id.textWriter);
-//
-//
-//
-//        textWriter
-//                .setWidth(12)
-//                .setDelay(30)
-//                .setColor(Color.RED)
-//                .setConfig(TextWriter.Configuration.INTERMEDIATE)
-//                .setSizeFactor(30f)
-//                .setLetterSpacing(25f)
-//                .setText("LIVERPOOL FC EEEEEE")
-//                .setListener(new TextWriter.Listener() {
-//                    @Override
-//                    public void WritingFinished() {
-//
-//                        //do stuff after animation is finished
-//                    }
-//                })
-//                .startAnimation();
-//        textWriter.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-//        asyncTextPathView = findViewById(R.id.animatedText);
-//        asyncTextPathView.setText("После взаи-  модействия сФертом вам  будет предло-жено отреаги-ровать с по-  мощью поя-  вившихся       кнопок.");
-
     }
-
-//    public void buttonClicked(View view){
-//        Toast toast = Toast.makeText(activity.getApplicationContext(),
-//                "buttonClicked", Toast.LENGTH_SHORT);
-//        toast.show();
-//        dismiss();
-//    }
 
     @Override
     public void dismiss(){
@@ -199,16 +162,5 @@ public class NewCustomDialog extends Dialog implements
                 "Принято", Toast.LENGTH_SHORT);
         toast.show();
         dismiss();
-//        switch (v.getId()) {
-//            case R.id.btn_yes:
-//                c.finish();
-//                break;
-//            case R.id.btn_no:
-//                dismiss();
-//                break;
-//            default:
-//                break;
-//        }
-//        dismiss();
     }
 }
