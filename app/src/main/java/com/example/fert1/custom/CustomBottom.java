@@ -26,7 +26,7 @@ public class CustomBottom extends ConstraintLayout {
     public void setSelected(Integer item){
         soulButton.setImageResource(R.drawable.soul_passive);
         numpadButton.setImageResource(R.drawable.numpad_passive);
-        settingsButton.setImageResource(R.drawable.soul_passive);
+        settingsButton.setImageResource(R.drawable.settings_passive);
         switch (item){
             case 1:
                 soulButton.setImageResource(R.drawable.soul_selected);

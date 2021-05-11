@@ -40,7 +40,7 @@
                 android:id="@+id/soul_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Характер" />
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +68,7 @@
                 android:id="@+id/numpad_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Калькулятор" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +96,7 @@
                 android:id="@+id/settings_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Настройки" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
