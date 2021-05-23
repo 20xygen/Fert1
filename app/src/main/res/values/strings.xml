@@ -4,4 +4,15 @@
     <string name="calc_string">Numpad</string>
     <string name="settings_string">Settings</string>
     <string name="toast_already">Вы уже находитесь здесь</string>
+    <string name="bottom_soul_text">Характер</string>
+    <string name="bottom_umpad_text">Калькулятор</string>
+    <string name="bottom_settings_text">Настройки</string>
+    <string name="next_text">Далее</string>
+    <string name="childishness_text">Ребячество</string>
+    <string name="lazyness_text">Лень</string>
+    <string name="ok_text">Хорошо</string>
+    <string name="cancel_text">Отмена</string>
+    <string name="sure_text">Уверен</string>
+    <string name="easter_text">Разработчик: \nДенис Барилов \nСенсей: \nМихаил Портнов \nСпортблогер:\nИгорь Войтенко</string>
+    <string name="entry_text">Приветствую тебя, мой новый друг. Меня зовут Ферт. Я - калькулятор с характером, также как обычные люди, я могу делать ошибки, и их количество напрямую зависит от уровня наших взаимоотношений. Теперь, поведуй и ты мне своё имя: </string>
 </resources>

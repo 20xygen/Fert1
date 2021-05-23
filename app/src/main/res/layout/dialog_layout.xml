@@ -60,7 +60,7 @@
         android:background="#00FFFFFF"
         android:shadowColor="#B200FFFF"
         android:shadowRadius="10"
-        android:text="Хорошо"
+        android:text="@string/ok_text"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/button_back"

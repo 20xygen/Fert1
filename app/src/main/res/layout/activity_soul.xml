@@ -11,12 +11,12 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="223dp"
-        tools:layout_editor_absoluteY="379dp">
+        tools:layout_editor_absoluteX="223sp"
+        tools:layout_editor_absoluteY="379sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,15 +33,15 @@
                 android:shadowDy="4"
                 android:shadowRadius="10"
                 android:textColor="@color/white"
-                android:textSize="33dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:textSize="33sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintVertical_bias="0.45"
-                android:text="Ребячество" />
+                android:text="@string/childishness_text" />
 
             <ProgressBar
                 android:id="@+id/progress_circular1"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintVertical_bias="0.45"
-                android:text="Лень" />
+                android:text="@string/lazyness_text" />
 
             <ProgressBar
                 android:id="@+id/progress_circular2"
